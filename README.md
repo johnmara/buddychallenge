@@ -1,4 +1,4 @@
-# buddychallenge
+# Buddy Challenge , Social Network
 
 Buddy Challenge
 
