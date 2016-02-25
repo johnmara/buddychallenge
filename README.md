@@ -21,5 +21,7 @@ Junit for testing, Stubs for testing the GUI
 Project that created for the course "Software Engineer" , Athens University of Economics And Buisness by students:
 
 Bill Drosatos,
+
 John Maragkopoulos,
+
 Thodoris Magkavetsos.
