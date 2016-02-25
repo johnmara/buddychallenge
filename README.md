@@ -15,3 +15,11 @@ MVC model, models views and controllers/services,
 Java,
 
 Junit for testing, Stubs for testing the GUI
+
+@Disclaimer:
+
+Project that created for the course "Software Engineer" , Athens University of Economics And Buisness by students:
+
+Bill Drosatos,
+John Maragkopoulos,
+Thodoris Magkavetsos.
