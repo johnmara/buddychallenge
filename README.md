@@ -9,6 +9,9 @@ have commons with the another user you become buddies automatically.
 Techonologies that used are:
 
 Eclipse, IDE and WindowsBuilder for GUI part 
+
 MVC model, models views and controllers/services,
+
 Java,
+
 Junit for testing, Stubs for testing the GUI
