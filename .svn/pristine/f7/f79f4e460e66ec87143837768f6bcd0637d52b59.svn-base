@@ -1,0 +1,82 @@
+package buddychallenge.entities;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import buddychallenge.util.Password;
+import buddychallenge.util.Username;
+
+public class Admin {
+	
+	private static int id;
+	private int adminID;
+	private Username username;
+	private Password password;
+	private static List<Report> reports;
+	
+	public Admin(Username username, Password password) {		
+		adminID = id++;
+		this.username = username;
+		this.password = password;
+		reports = new ArrayList<Report>();
+	}
+	
+	public Admin() {		
+		adminID = id++;
+		reports = new ArrayList<Report>();
+	}
+
+	public Username getUsername() {
+		return username;
+	}
+
+	public void setUsername(Username username) {
+		this.username = username;
+	}
+
+	public Password getPassword() {
+		return password;
+	}
+
+	public void setPassword(Password password) {
+		this.password = password;
+	}
+
+	public int getAdminID() {
+		return adminID;
+	}
+	
+	public Question createQuestion(String question, List<String>options) {
+		return new Question(question,options);
+	}
+	
+	public Question addOption(Question q, String option){
+		q.addOption(option);
+		return q;
+	}
+	
+	public Question removeOption(Question q, String option){
+		q.removeOption(option);
+		return q;
+	}
+	
+	public void addReport(Report report){
+		if(report != null){
+			reports.add(report);
+		}
+	}
+	
+	public List<Report> getReports(){
+		return new ArrayList<Report>(reports);
+	}
+	
+	public void deletePost(Report report){
+		report.getPost().getUser().deletePost(report.getPost());//Bow
+		deleteReport(report);
+	}
+	
+	public void deleteReport(Report report){
+		if(reports.contains(report))
+			reports.remove(report);
+	}
+}

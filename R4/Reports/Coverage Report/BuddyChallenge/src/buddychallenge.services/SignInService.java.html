@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>SignInService.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (3 Ιουν 2015 4:27:49 πμ)</a> &gt; <a href="../../index.html" class="el_group">BuddyChallenge</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">buddychallenge.services</a> &gt; <span class="el_source">SignInService.java</span></div><h1>SignInService.java</h1><pre class="source lang-java linenums">/*
+ * 
+ */
+package buddychallenge.services;
+
+import buddychallenge.dao.AdminsDAO;
+import buddychallenge.dao.UsersDAO;
+import buddychallenge.entities.Admin;
+import buddychallenge.entities.User;
+import buddychallenge.exceptions.UserException;
+import buddychallenge.util.Password;
+import buddychallenge.util.Username;
+
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SignIn.
+ */
+public class SignInService {
+	
+	/** The id. */
+	private static int id;
+	
+	/** The sign in id. */
+	private int signInID;
+	
+	/** The username. */
+	private Username username;
+	
+	/** The password. */
+	private Password password;
+	
+	/** The users. */
+	private UsersDAO users;
+	
+	/** The admins. */
+	private AdminsDAO admins;
+	
+	/** The current user. */
+	private User currentUser;
+	
+	/** The current admin. */
+	private Admin currentAdmin;
+	
+	/**
+	 * Instantiates a new sign in.
+	 *
+	 * @param username the username
+	 * @param password the password
+	 * @param users the users
+	 * @param admins the admins
+	 */
+<span class="fc" id="L52">	public SignInService(Username username, Password password, UsersDAO users, AdminsDAO admins) {</span>
+<span class="fc" id="L53">		signInID = id++;</span>
+<span class="fc" id="L54">		setUsername(username);</span>
+<span class="fc" id="L55">		setPassword(password);</span>
+<span class="fc" id="L56">		setUsers(users);</span>
+<span class="fc" id="L57">		setAdmins(admins);</span>
+<span class="fc" id="L58">	}</span>
+
+	/**
+	 * Instantiates a new sign in.
+	 */
+	public SignInService(){
+<span class="fc" id="L64">		this(null,null,null,null);</span>
+<span class="fc" id="L65">	}</span>
+	
+	/**
+	 * Sign in user.
+	 *
+	 * @throws UserException , if the user/admin doesnt exists 
+	 */
+	public void signInUser() throws UserException{
+<span class="fc bfc" id="L73" title="All 2 branches covered.">		if (userExists()){</span>
+<span class="fc" id="L74">			User u = users.getUserByUsername(username.getUsername());</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">			if(u.getPassword().equals(password))</span>
+<span class="fc" id="L76">				currentUser = u;// CurrentUser</span>
+			else
+<span class="fc" id="L78">				throw new UserException(&quot;Wrong Username or Password.&quot;);</span>
+			
+		}
+		else{
+<span class="fc bfc" id="L82" title="All 2 branches covered.">			if(adminExists()){</span>
+<span class="fc" id="L83">				Admin a = admins.getAdminByUsername(username.getUsername());</span>
+				
+<span class="pc bpc" id="L85" title="1 of 2 branches missed.">				if(a.getPassword().equals(password))</span>
+<span class="fc" id="L86">					currentAdmin = a;// CurrentAdmin</span>
+<span class="fc" id="L87">			}else</span>
+<span class="fc" id="L88">				throw new UserException(&quot;Wrong Username or Password.&quot;);</span>
+			
+		}
+			
+<span class="fc" id="L92">	}</span>
+	
+	/**
+	 * Admin exists.
+	 *
+	 * @return true, if the admin exists in AdminsDAO
+	 */
+	private boolean adminExists() {
+<span class="fc bfc" id="L100" title="All 2 branches covered.">		for (Admin a : admins.getAdminList()) {</span>
+<span class="fc bfc" id="L101" title="All 2 branches covered.">			if (a.getUsername().getUsername().equals(username.getUsername())) {</span>
+<span class="fc" id="L102">				return true;</span>
+			}
+		}
+<span class="fc" id="L105">		return false;</span>
+	}
+	
+	/**
+	 * User exists.
+	 *
+	 * @return true, if the user exists in AdminsDAO
+	 */
+	private boolean userExists() {
+<span class="fc bfc" id="L114" title="All 2 branches covered.">		for (User u : users.getUserList()) {</span>
+<span class="fc bfc" id="L115" title="All 2 branches covered.">			if (u.getUsername().getUsername().equals(username.getUsername())) {</span>
+<span class="fc" id="L116">				return true;</span>
+			}
+		}
+<span class="fc" id="L119">		return false;</span>
+	}
+
+	/**
+	 * Gets the username.
+	 *
+	 * @return the username
+	 */
+	public Username getUsername() {
+<span class="nc" id="L128">		return username;</span>
+	}
+
+	/**
+	 * Sets the username.
+	 *
+	 * @param username the new username
+	 */
+	public void setUsername(Username username) {
+<span class="fc" id="L137">		this.username = username;</span>
+<span class="fc" id="L138">	}</span>
+
+	/**
+	 * Gets the password.
+	 *
+	 * @return the password
+	 */
+	public Password getPassword() {
+<span class="nc" id="L146">		return password;</span>
+	}
+
+	/**
+	 * Sets the password.
+	 *
+	 * @param password the new password
+	 */
+	public void setPassword(Password password) {
+<span class="fc" id="L155">		this.password = password;</span>
+<span class="fc" id="L156">	}</span>
+	
+	/**
+	 * Sets the users.
+	 *
+	 * @param users the new users
+	 */
+	public void setUsers(UsersDAO users) {
+<span class="fc" id="L164">		this.users = users;</span>
+<span class="fc" id="L165">	}</span>
+
+	/**
+	 * Sets the admins.
+	 *
+	 * @param admins the new admins
+	 */
+	public void setAdmins(AdminsDAO admins) {
+<span class="fc" id="L173">		this.admins = admins;</span>
+<span class="fc" id="L174">	}</span>
+	
+	/**
+	 * Gets the current user.
+	 *
+	 * @return the current user
+	 */
+	public User getCurrentUser(){
+<span class="fc" id="L182">		return currentUser;</span>
+	}
+	
+	/**
+	 * Gets the current admin.
+	 *
+	 * @return the current admin
+	 */
+	public Admin getCurrentAdmin(){
+<span class="fc" id="L191">		return currentAdmin;</span>
+	}
+	
+	/**
+	 * Gets the sign in id.
+	 *
+	 * @return the sign in id
+	 */
+	public int getSignInID() {
+<span class="nc" id="L200">		return signInID;</span>
+	}
+	
+	
+	
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>test (3 Ιουν 2015 4:27:49 πμ)</div></body></html>

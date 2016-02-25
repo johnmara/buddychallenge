@@ -1,0 +1,67 @@
+package buddychallenge.util;
+
+public class Password {
+	String value;
+
+	public Password(String password) {
+		this.value = password;
+	}
+
+	public String getPassword() {
+		return value;
+	}
+
+	public boolean isValid() {
+		boolean latin = false;
+		boolean number = false;
+		char c;
+		for(int i=0; i<value.length(); i++){
+			c = value.charAt(i);
+			if (c >= 'A' && c <= 'Z' || c >= 'a' && c <= 'z')
+				latin = true;
+			if (c >='0' && c <= '9')
+				number = true;
+		}
+		if (number == false || latin == false)
+			return false;
+		if(value.length() <= 5)
+			return false;
+		if(value.isEmpty())
+			return false;
+		
+		return true;
+	}
+
+	@Override
+	public boolean equals(Object other) {
+		if (other == null) {
+			return false;
+		}
+
+		if (this == other) {
+			return true;
+		}
+
+		if (!(other instanceof Password)) {
+			return false;
+		}
+
+		Password password = (Password) other;
+		return value == null ? password.getPassword() == null : value
+				.equals(password.getPassword());
+	}
+
+	@Override
+	public int hashCode() {
+		return value == null ? 0 : value.hashCode();
+	}
+
+	@Override
+	public String toString() {
+		return value;
+	}
+	
+	public void setPassword(String password){
+		value = password;
+	}
+}

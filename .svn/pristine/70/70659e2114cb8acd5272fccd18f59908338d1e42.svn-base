@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>ProfilePresenter.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (3 Ιουν 2015 4:27:49 πμ)</a> &gt; <a href="../../index.html" class="el_group">BuddyChallenge</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">buddychallenge.gui.presenters</a> &gt; <span class="el_source">ProfilePresenter.java</span></div><h1>ProfilePresenter.java</h1><pre class="source lang-java linenums">/*
+ * 
+ */
+package buddychallenge.gui.presenters;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import buddychallenge.dao.PostsDAO;
+import buddychallenge.entities.Post;
+import buddychallenge.entities.User;
+import buddychallenge.gui.AddPostJFrame;
+import buddychallenge.gui.views.interfaces.ProfileView;
+import buddychallenge.services.ShowProfileService;
+
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ProfilePresenter.
+ */
+public class ProfilePresenter {
+	
+	/** The view. */
+	private ProfileView view;
+	
+	/** The posts. */
+	private PostsDAO posts;
+	
+	/** The current user. */
+	private User currentUser;
+	
+	/** The service. */
+	private ShowProfileService service;
+	
+	/**
+	 * Instantiates a new profile presenter.
+	 *
+	 * @param view the view
+	 * @param posts the posts
+	 * @param currentUser the current user
+	 */
+<span class="nc" id="L41">	public ProfilePresenter(ProfileView view,PostsDAO posts, User currentUser){</span>
+<span class="nc" id="L42">		this.view = view;</span>
+<span class="nc" id="L43">		this.setPosts(posts);</span>
+<span class="nc" id="L44">		this.setCurrentUser(currentUser);</span>
+<span class="nc" id="L45">		this.setService(new ShowProfileService(this.currentUser, this.currentUser, this.posts));</span>
+<span class="nc" id="L46">	}</span>
+	
+	/**
+	 * Sets the show profile service.
+	 *
+	 * @param service the new show profile service
+	 */
+	public void setService(ShowProfileService service){
+<span class="nc" id="L54">		this.service = service;</span>
+<span class="nc" id="L55">	}</span>
+	
+	/**
+	 * Start.
+	 */
+	public void start(){
+<span class="nc" id="L61">		view.setProfilePresenter(this);</span>
+<span class="nc" id="L62">		view.open();</span>
+<span class="nc" id="L63">	}</span>
+	
+	/**
+	 * Adds the post action.
+	 */
+	public void addPostAction() {
+<span class="nc" id="L69">		new AddPostPresenter(new AddPostJFrame(view.getMainFrame()), currentUser, posts).start();</span>
+<span class="nc" id="L70">	}</span>
+	
+	/**
+	 * Gets the profile name.
+	 *
+	 * @return the profile name
+	 */
+	public String getProfileName(){
+<span class="nc" id="L78">		return service.getProfileName();</span>
+	}
+	
+	/**
+	 * Gets the buddies as string.
+	 *
+	 * @return the buddies as string
+	 */
+	public List&lt;String&gt; getBuddiesAsString(){
+<span class="nc" id="L87">		List&lt;String&gt; buddiesAsString = new ArrayList&lt;String&gt;();</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">		for(User u : service.getCurrentuser().getBuddies()){</span>
+<span class="nc" id="L89">			buddiesAsString.add(u.getFirstname()+&quot; &quot; +u.getLastname());</span>
+		}
+<span class="nc" id="L91">		return buddiesAsString;</span>
+	}
+	
+	/**
+	 * Gets the posts as string.
+	 *
+	 * @return the posts as string
+	 */
+	public List&lt;String&gt; getPostsAsString(){
+<span class="nc" id="L100">		List&lt;String&gt; postsAsString = new ArrayList&lt;String&gt;();</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">		for(Post p : service.getMyPosts()){</span>
+<span class="nc" id="L102">			postsAsString.add(p.getText());</span>
+		}
+<span class="nc" id="L104">		return postsAsString;</span>
+	}
+
+	/**
+	 * Gets the posts.
+	 *
+	 * @return the posts
+	 */
+	public PostsDAO getPosts() {
+<span class="nc" id="L113">		return posts;</span>
+	}
+
+	/**
+	 * Sets the posts.
+	 *
+	 * @param posts the new posts
+	 */
+	public void setPosts(PostsDAO posts) {
+<span class="nc" id="L122">		this.posts = posts;</span>
+<span class="nc" id="L123">	}</span>
+
+	/**
+	 * Gets the current user.
+	 *
+	 * @return the current user
+	 */
+	public User getCurrentUser() {
+<span class="nc" id="L131">		return currentUser;</span>
+	}
+
+	/**
+	 * Sets the current user.
+	 *
+	 * @param currentUser the new current user
+	 */
+	public void setCurrentUser(User currentUser) {
+<span class="nc" id="L140">		this.currentUser = currentUser;</span>
+<span class="nc" id="L141">	}</span>
+
+
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>test (3 Ιουν 2015 4:27:49 πμ)</div></body></html>

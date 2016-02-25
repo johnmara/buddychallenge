@@ -1,0 +1,16 @@
+package buddychallenge.util;
+
+public enum Gender {
+	Gender1("MALE"), 
+	Gender2("FEMALE");
+	
+	private final String gender;       
+
+    private Gender(String g) {
+        gender = g;
+    }
+    
+    public String toString(){
+        return gender;
+     }
+}

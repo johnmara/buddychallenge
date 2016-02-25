@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>User.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (3 Ιουν 2015 4:27:49 πμ)</a> &gt; <a href="../../index.html" class="el_group">BuddyChallenge</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">buddychallenge.entities</a> &gt; <span class="el_source">User.java</span></div><h1>User.java</h1><pre class="source lang-java linenums">/*
+ * Desrcibes A User Entity.
+ */
+package buddychallenge.entities;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import buddychallenge.exceptions.BuddyException;
+import buddychallenge.util.EmailAddress;
+import buddychallenge.util.Gender;
+import buddychallenge.util.Password;
+import buddychallenge.util.Username;
+
+// TODO: Auto-generated Javadoc
+/**
+ * The Class User.
+ */
+public class User {
+	
+	/** The id. */
+	private static int id;
+	
+	/** The user id. */
+	private int userID;
+	
+	/** The username. */
+	private Username username;
+	
+	/** The password. */
+	private Password password;
+	
+	/** The mail. */
+	private EmailAddress mail;
+	
+	/** The firstname. */
+	private String firstname;
+	
+	/** The lastname. */
+	private String lastname;
+	
+	/** The gender. */
+	private Gender gender;
+	
+	/** The birthdate. */
+	private Date birthdate;
+	
+	/** The has answered. */
+	private boolean hasAnswered; //user has aswered the questions
+	
+	/** The questions. */
+	private Map&lt;Question, String&gt; questions;
+
+	/** The buddies. */
+	private List&lt;User&gt; buddies;
+	
+	/** The posts. */
+	private List&lt;Post&gt; posts;
+
+	/**
+	 * Instantiates a new user.
+	 */
+	public User() {
+<span class="fc" id="L67">		this(null, null, null, &quot;Uknown&quot;, &quot;Uknown&quot;, null, null);</span>
+<span class="fc" id="L68">	}</span>
+
+	/**
+	 * Instantiates a new user.
+	 *
+	 * @param username the Username that user's choose
+	 * @param password the password that user's choose
+	 * @param mail the mail that user's choose
+	 * @param firstname the firstname that user's choose
+	 * @param lastname the lastname that user's choose
+	 * @param gender the gender that user's choose
+	 * @param birthdate the birthdate that user's choose
+	 */
+<span class="fc" id="L81">	public User(Username username, Password password, EmailAddress mail,</span>
+			String firstname, String lastname, Gender gender, Date birthdate) {
+<span class="fc" id="L83">		userID = id++;</span>
+<span class="fc" id="L84">		setUsername(username);</span>
+<span class="fc" id="L85">		setPassword(password);</span>
+<span class="fc" id="L86">		setMail(mail);</span>
+<span class="fc" id="L87">		setFirstname(firstname);</span>
+<span class="fc" id="L88">		setLastname(lastname);</span>
+<span class="fc" id="L89">		setGender(gender);</span>
+<span class="fc" id="L90">		setBirthdate(birthdate);</span>
+<span class="fc" id="L91">		setQuestions(new HashMap&lt;Question, String&gt;());</span>
+<span class="fc" id="L92">		setBuddies(new ArrayList&lt;User&gt;());</span>
+<span class="fc" id="L93">		setPosts(new ArrayList&lt;Post&gt;());</span>
+<span class="fc" id="L94">	}</span>
+
+	// methods of User
+
+	
+
+	/**
+	 * Checks for buddy.
+	 *
+	 * @param buddy, User instance that will be check if is buddy with the user.
+	 * @return true, if the 2 users are buddies
+	 */
+	public boolean hasBuddy(User buddy) {
+<span class="fc bfc" id="L107" title="All 2 branches covered.">		for (User user : buddies) {</span>
+<span class="pc bpc" id="L108" title="1 of 2 branches missed.">			if (buddy.equals(user)) {</span>
+<span class="fc" id="L109">				return true;</span>
+			}
+		}
+<span class="fc" id="L112">		return false;</span>
+	}
+
+	/**
+	 * Creates the post.
+	 *
+	 * @param post, Post instance that will be created
+	 */
+	public void createPost(Post post) {
+<span class="fc" id="L121">		posts.add(post);</span>
+<span class="fc" id="L122">	}</span>
+
+	/**
+	 * Delete post.
+	 *
+	 * @param post, Post instance that will be deleted
+	 */
+	public void deletePost(Post post) {
+<span class="fc" id="L130">		posts.remove(post);</span>
+<span class="fc" id="L131">	}</span>
+
+	/**
+	 * Adds the buddy.
+	 *
+	 * @param user, User Instance that would be buddy with the user.
+	 * @throws BuddyException, if they are already buddies or trying to be buddy with himself
+	 */
+	public void addBuddy(User user) throws BuddyException {
+<span class="fc bfc" id="L140" title="All 2 branches covered.">		if (this.equals(user))</span>
+<span class="fc" id="L141">			throw new BuddyException(&quot;You can not be buddy with yourself&quot;);</span>
+<span class="fc bfc" id="L142" title="All 2 branches covered.">		else if(this.hasBuddy(user))</span>
+<span class="fc" id="L143">			throw new BuddyException(&quot;You are already buddies&quot;);</span>
+		else
+<span class="fc" id="L145">			buddies.add(user);</span>
+<span class="fc" id="L146">	}</span>
+
+	/**
+	 * Removes the buddy.
+	 *
+	 * @param user the User instance that will be removed from buddies list.
+	 */
+	public void removeBuddy(User user) {
+<span class="fc" id="L154">		buddies.remove(user);</span>
+<span class="fc" id="L155">	}</span>
+
+	// getters and setters
+	/**
+	 * Gets the user id.
+	 *
+	 * @return the user id
+	 */
+	public int getUserID() {
+<span class="fc" id="L164">		return userID;</span>
+	}
+
+	/**
+	 * Gets the username.
+	 *
+	 * @return the username
+	 */
+	public Username getUsername() {
+<span class="fc" id="L173">		return username;</span>
+	}
+
+	/**
+	 * Sets the username.
+	 *
+	 * @param username the new username
+	 */
+	public void setUsername(Username username) {
+<span class="fc" id="L182">		this.username = username;</span>
+<span class="fc" id="L183">	}</span>
+
+	/**
+	 * Gets the password.
+	 *
+	 * @return the password
+	 */
+	public Password getPassword() {
+<span class="fc" id="L191">		return password;</span>
+	}
+
+	/**
+	 * Sets the password.
+	 *
+	 * @param password the new password
+	 */
+	public void setPassword(Password password) {
+<span class="fc" id="L200">		this.password = password;</span>
+<span class="fc" id="L201">	}</span>
+
+	/**
+	 * Gets the mail.
+	 *
+	 * @return the mail
+	 */
+	public EmailAddress getMail() {
+<span class="nc" id="L209">		return mail;</span>
+	}
+
+	/**
+	 * Sets the mail.
+	 *
+	 * @param mail the new mail
+	 */
+	public void setMail(EmailAddress mail) {
+<span class="fc" id="L218">		this.mail = mail;</span>
+<span class="fc" id="L219">	}</span>
+
+	/**
+	 * Gets the firstname.
+	 *
+	 * @return the firstname
+	 */
+	public String getFirstname() {
+<span class="fc" id="L227">		return firstname;</span>
+	}
+
+	/**
+	 * Sets the firstname.
+	 *
+	 * @param firstname the new firstname
+	 */
+	public void setFirstname(String firstname) {
+<span class="fc" id="L236">		this.firstname = firstname;</span>
+<span class="fc" id="L237">	}</span>
+
+	/**
+	 * Gets the lastname.
+	 *
+	 * @return the lastname
+	 */
+	public String getLastname() {
+<span class="fc" id="L245">		return lastname;</span>
+	}
+
+	/**
+	 * Sets the lastname.
+	 *
+	 * @param lastname the new lastname
+	 */
+	public void setLastname(String lastname) {
+<span class="fc" id="L254">		this.lastname = lastname;</span>
+<span class="fc" id="L255">	}</span>
+
+	/**
+	 * Gets the genre.
+	 *
+	 * @return the genre
+	 */
+	public Gender getGenre() {
+<span class="nc" id="L263">		return gender;</span>
+	}
+
+	/**
+	 * Sets the gender.
+	 *
+	 * @param gender the new gender
+	 */
+	public void setGender(Gender gender) {
+<span class="fc" id="L272">		this.gender = gender;</span>
+<span class="fc" id="L273">	}</span>
+
+	/**
+	 * Gets the birthdate.
+	 *
+	 * @return the birthdate
+	 */
+	public Date getBirthdate() {
+<span class="nc" id="L281">		return birthdate;</span>
+	}
+
+	/**
+	 * Sets the birthdate.
+	 *
+	 * @param birthdate the new birthdate
+	 */
+	public void setBirthdate(Date birthdate) {
+<span class="fc" id="L290">		this.birthdate = birthdate;</span>
+<span class="fc" id="L291">	}</span>
+
+	/**
+	 * Gets the buddies.
+	 *
+	 * @return the buddies
+	 */
+	public List&lt;User&gt; getBuddies() {
+<span class="nc" id="L299">		return new ArrayList&lt;User&gt;(buddies);</span>
+	}
+
+	/**
+	 * Sets the buddies.
+	 *
+	 * @param buddies the new buddies
+	 */
+	public void setBuddies(List&lt;User&gt; buddies) {
+<span class="fc" id="L308">		this.buddies = buddies;</span>
+<span class="fc" id="L309">	}</span>
+
+	/**
+	 * Gets the posts.
+	 *
+	 * @return the posts
+	 */
+	public List&lt;Post&gt; getPosts() {
+<span class="fc" id="L317">		return new ArrayList&lt;Post&gt;(posts);</span>
+	}
+
+	/**
+	 * Sets the posts.
+	 *
+	 * @param posts the new posts
+	 */
+	public void setPosts(List&lt;Post&gt; posts) {
+<span class="fc" id="L326">		this.posts = posts;</span>
+<span class="fc" id="L327">	}</span>
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object o) {
+<span class="pc bpc" id="L334" title="1 of 2 branches missed.">		if (o instanceof User) {</span>
+<span class="fc bfc" id="L335" title="All 2 branches covered.">			return this.getUserID() == ((User) o).getUserID();</span>
+		}
+<span class="nc" id="L337">		return false;</span>
+	}
+
+	/**
+	 * Gets the questions.
+	 *
+	 * @return the questions
+	 */
+	public Map&lt;Question, String&gt; getQuestions() {
+<span class="fc" id="L346">		return new HashMap&lt;Question, String&gt;(questions);</span>
+	}
+
+	/**
+	 * Sets the questions.
+	 *
+	 * @param questions the questions
+	 */
+	public void setQuestions(Map&lt;Question, String&gt; questions) {
+<span class="fc" id="L355">		this.questions = questions;</span>
+<span class="fc" id="L356">	}</span>
+
+	/**
+	 * Adds the question.
+	 *
+	 * @param q the q
+	 * @param answer the answer
+	 */
+	public void addQuestion(Question q, String answer) {
+<span class="fc" id="L365">		questions.put(q, answer);</span>
+<span class="fc" id="L366">	}</span>
+
+	/**
+	 * Prints the buddies.
+	 */
+	public void printBuddies() {
+<span class="nc bnc" id="L372" title="All 2 branches missed.">		for (User buddy : buddies) {</span>
+<span class="nc" id="L373">			System.out.println(buddy.getUsername());</span>
+		}
+<span class="nc" id="L375">	}</span>
+
+	/**
+	 * Prints the posts.
+	 *
+	 * @param user the user
+	 */
+	public void printPosts(User user) {
+<span class="nc" id="L383">		String postText = &quot;&quot;;</span>
+<span class="nc bnc" id="L384" title="All 2 branches missed.">		for (Post p : posts) {</span>
+<span class="nc bnc" id="L385" title="All 2 branches missed.">			if (p.getRule().hasAccess(p.getUser(), user)) {</span>
+<span class="nc" id="L386">				postText += &quot;Post:\n&quot; + p.getText();</span>
+<span class="nc" id="L387">				postText += &quot;\nComments:\n&quot; + p.getComments();</span>
+			}
+<span class="nc" id="L389">			System.out.println(postText);</span>
+		}
+<span class="nc" id="L391">	}</span>
+
+	/**
+	 * Prints the posts.
+	 */
+	public void printPosts() {
+<span class="nc" id="L397">		String postText = &quot;&quot;;</span>
+<span class="nc bnc" id="L398" title="All 2 branches missed.">		for (Post p : posts) {</span>
+<span class="nc" id="L399">			postText += &quot;Post:\n&quot; + p.getText();</span>
+<span class="nc" id="L400">			postText += &quot;\nComments:\n&quot; + p.getComments();</span>
+<span class="nc" id="L401">			System.out.println(postText);</span>
+		}
+<span class="nc" id="L403">	}</span>
+
+	
+	/**
+	 * Checks for question.
+	 *
+	 * @param q the Question Instance
+	 * @return true, if the questions are the same.
+	 */
+	public boolean hasQuestion(Question q){
+<span class="nc bnc" id="L413" title="All 2 branches missed.">		for (Map.Entry&lt;Question, String&gt; q2: getQuestions().entrySet()) { </span>
+<span class="nc bnc" id="L414" title="All 2 branches missed.">			if (q2.getKey().equals(q)) { </span>
+<span class="nc" id="L415">				return true;</span>
+			}
+		} 
+<span class="nc" id="L418">		return false;</span>
+	}
+
+	/**
+	 * Gets the checks for answered.
+	 *
+	 * @return the checks for answered
+	 */
+	public boolean getHasAnswered() {
+<span class="nc" id="L427">		return hasAnswered;</span>
+	}
+
+	/**
+	 * Sets the checks for answered.
+	 *
+	 * @param hasAnswered the new checks for answered
+	 */
+	public void setHasAnswered(boolean hasAnswered) {
+<span class="nc" id="L436">		this.hasAnswered = hasAnswered;</span>
+<span class="nc" id="L437">	}</span>
+	 
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>test (3 Ιουν 2015 4:27:49 πμ)</div></body></html>

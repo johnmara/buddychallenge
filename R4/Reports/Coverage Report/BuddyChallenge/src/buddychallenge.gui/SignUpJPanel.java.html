@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>SignUpJPanel.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (3 Ιουν 2015 4:27:49 πμ)</a> &gt; <a href="../../index.html" class="el_group">BuddyChallenge</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">buddychallenge.gui</a> &gt; <span class="el_source">SignUpJPanel.java</span></div><h1>SignUpJPanel.java</h1><pre class="source lang-java linenums"><span class="nc" id="L1">/*</span>
+ * 
+ */
+package buddychallenge.gui;
+
+
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+
+
+
+
+
+
+
+import buddychallenge.gui.presenters.SignUpPresenter;
+import buddychallenge.gui.views.interfaces.SignUpView;
+
+import javax.swing.JLabel;
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.Color;
+
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SignUpJPanel.
+ */
+public class SignUpJPanel extends JPanel implements SignUpView {
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+
+	/* (non-Javadoc)
+	 * @see buddychallenge.gui.views.interfaces.SignUpView#getMainFrame()
+	 */
+	public JFrame getMainFrame() {
+<span class="nc" id="L47">		return mainFrame;</span>
+	}
+
+	/**
+	 * Sets the main frame.
+	 *
+	 * @param mainFrame the new main frame
+	 */
+	public void setMainFrame(JFrame mainFrame) {
+<span class="nc" id="L56">		this.mainFrame = mainFrame;</span>
+<span class="nc" id="L57">	}</span>
+
+	/** The main frame. */
+	private JFrame mainFrame;
+	
+	/** The previus panel. */
+	private Container previusPanel;
+
+	/** The username. */
+	private JTextField username;
+	
+	/** The password. */
+	private JPasswordField password;
+	
+	/** The email. */
+	private JTextField email;
+	
+	/** The first name. */
+	private JTextField firstName;
+	
+	/** The last name. */
+	private JTextField lastName;
+	
+	/** The btngroup. */
+	private ButtonGroup btngroup;
+	
+	/** The radio panel. */
+	private JPanel radioPanel;
+	
+	/** The male rb. */
+	private JRadioButton maleRB;
+	
+	/** The female rb. */
+	private JRadioButton femaleRB;
+	
+	/** The birth date. */
+	private JTextField birthDate;
+
+	/** The lbl username. */
+	private JLabel lblUsername;
+	
+	/** The lbl password. */
+	private JLabel lblPassword;
+	
+	/** The lbl first name. */
+	private JLabel lblFirstName;
+	
+	/** The lbl last name. */
+	private JLabel lblLastName;
+	
+	/** The lbl gender. */
+	private JLabel lblGender;
+	
+	/** The lbl new label. */
+	private JLabel lblNewLabel;
+	
+	/** The lblemail. */
+	private JLabel lblemail;
+
+	/** The confirm button. */
+	private JButton confirmButton;
+	
+	/** The cancel button. */
+	private JButton cancelButton;
+
+	/** The presenter. */
+	private SignUpPresenter presenter;
+
+	/**
+	 * Instantiates a new sign up j panel.
+	 *
+	 * @param frame the frame
+	 */
+<span class="nc" id="L130">	public SignUpJPanel(JFrame frame) {</span>
+<span class="nc" id="L131">		setBackground(Color.ORANGE);</span>
+<span class="nc" id="L132">		mainFrame = frame;</span>
+
+<span class="nc" id="L134">		username = new JTextField();</span>
+<span class="nc" id="L135">		username.setToolTipText(&quot;Username&quot;);</span>
+<span class="nc" id="L136">		username.setBounds(147, 41, 97, 20);</span>
+<span class="nc" id="L137">		add(username);</span>
+
+<span class="nc" id="L139">		password = new JPasswordField();</span>
+<span class="nc" id="L140">		password.setToolTipText(&quot;Password&quot;);</span>
+<span class="nc" id="L141">		password.setBounds(147, 73, 97, 20);</span>
+<span class="nc" id="L142">		add(password);</span>
+
+<span class="nc" id="L144">		email = new JTextField();</span>
+<span class="nc" id="L145">		email.setBounds(147, 105, 97, 20);</span>
+<span class="nc" id="L146">		add(email);</span>
+
+<span class="nc" id="L148">		firstName = new JTextField();</span>
+<span class="nc" id="L149">		firstName.setToolTipText(&quot;Firstname&quot;);</span>
+<span class="nc" id="L150">		firstName.setBounds(147, 139, 97, 20);</span>
+<span class="nc" id="L151">		add(firstName);</span>
+
+<span class="nc" id="L153">		lastName = new JTextField();</span>
+<span class="nc" id="L154">		lastName.setToolTipText(&quot;LastName&quot;);</span>
+<span class="nc" id="L155">		lastName.setBounds(147, 163, 97, 20);</span>
+<span class="nc" id="L156">		add(lastName);</span>
+
+<span class="nc" id="L158">		maleRB = new JRadioButton();</span>
+<span class="nc" id="L159">		maleRB.setBackground(Color.ORANGE);</span>
+<span class="nc" id="L160">		maleRB.setText(&quot;Male&quot;);</span>
+<span class="nc" id="L161">		maleRB.setToolTipText(&quot;Male&quot;);</span>
+<span class="nc" id="L162">		maleRB.setSelected(true);</span>
+
+<span class="nc" id="L164">		femaleRB = new JRadioButton();</span>
+<span class="nc" id="L165">		femaleRB.setBackground(Color.ORANGE);</span>
+<span class="nc" id="L166">		femaleRB.setText(&quot;Female&quot;);</span>
+<span class="nc" id="L167">		femaleRB.setToolTipText(&quot;Female&quot;);</span>
+
+<span class="nc" id="L169">		btngroup = new ButtonGroup();</span>
+<span class="nc" id="L170">		btngroup.add(maleRB);</span>
+<span class="nc" id="L171">		btngroup.add(femaleRB);</span>
+
+<span class="nc" id="L173">		radioPanel = new JPanel();</span>
+<span class="nc" id="L174">		radioPanel.setBackground(Color.ORANGE);</span>
+<span class="nc" id="L175">		radioPanel.setBounds(147, 189, 150, 22);</span>
+<span class="nc" id="L176">		radioPanel.setLayout(new BorderLayout(0, 0));</span>
+<span class="nc" id="L177">		radioPanel.add(maleRB, BorderLayout.WEST);</span>
+<span class="nc" id="L178">		radioPanel.add(femaleRB, BorderLayout.CENTER);</span>
+<span class="nc" id="L179">		add(radioPanel);</span>
+
+<span class="nc" id="L181">		birthDate = new JTextField();</span>
+<span class="nc" id="L182">		birthDate.setText(&quot;dd-mm-yy&quot;);</span>
+<span class="nc" id="L183">		birthDate.setBounds(147, 220, 120, 20);</span>
+<span class="nc" id="L184">		add(birthDate);</span>
+
+<span class="nc" id="L186">		confirmButton = new JButton(&quot;Sign Up&quot;);</span>
+<span class="nc" id="L187">		confirmButton.setBackground(new Color(255, 99, 71));</span>
+<span class="nc" id="L188">		confirmButton.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L190">				presenter.action();</span>
+<span class="nc" id="L191">			}</span>
+		});
+<span class="nc" id="L193">		confirmButton.setMnemonic(KeyEvent.VK_ENTER);</span>
+<span class="nc" id="L194">		confirmButton.setBounds(114, 266, 106, 23);</span>
+<span class="nc" id="L195">		add(confirmButton);</span>
+
+<span class="nc" id="L197">		cancelButton = new JButton(&quot;Cancel&quot;);</span>
+<span class="nc" id="L198">		cancelButton.setBackground(new Color(255, 215, 0));</span>
+<span class="nc" id="L199">		cancelButton.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L201">				presenter.cancel();</span>
+<span class="nc" id="L202">			}</span>
+		});
+<span class="nc" id="L204">		cancelButton.setMnemonic(KeyEvent.VK_CANCEL);</span>
+<span class="nc" id="L205">		cancelButton.setBounds(232, 266, 95, 23);</span>
+<span class="nc" id="L206">		add(cancelButton);</span>
+
+<span class="nc" id="L208">		setLayout(null);</span>
+
+<span class="nc" id="L210">		lblUsername = new JLabel(&quot;Username&quot;);</span>
+<span class="nc" id="L211">		lblUsername.setLabelFor(username);</span>
+<span class="nc" id="L212">		lblUsername.setBounds(38, 40, 83, 23);</span>
+<span class="nc" id="L213">		add(lblUsername);</span>
+
+<span class="nc" id="L215">		lblPassword = new JLabel(&quot;Password&quot;);</span>
+<span class="nc" id="L216">		lblPassword.setLabelFor(password);</span>
+<span class="nc" id="L217">		lblPassword.setBounds(38, 75, 83, 23);</span>
+<span class="nc" id="L218">		add(lblPassword);</span>
+
+<span class="nc" id="L220">		lblFirstName = new JLabel(&quot;First Name&quot;);</span>
+<span class="nc" id="L221">		lblFirstName.setLabelFor(firstName);</span>
+<span class="nc" id="L222">		lblFirstName.setBounds(38, 138, 83, 23);</span>
+<span class="nc" id="L223">		add(lblFirstName);</span>
+
+<span class="nc" id="L225">		lblLastName = new JLabel(&quot;Last Name&quot;);</span>
+<span class="nc" id="L226">		lblLastName.setLabelFor(lastName);</span>
+<span class="nc" id="L227">		lblLastName.setBounds(38, 161, 83, 23);</span>
+<span class="nc" id="L228">		add(lblLastName);</span>
+
+<span class="nc" id="L230">		lblGender = new JLabel(&quot;Gender&quot;);</span>
+<span class="nc" id="L231">		lblGender.setBounds(38, 189, 83, 23);</span>
+<span class="nc" id="L232">		add(lblGender);</span>
+
+<span class="nc" id="L234">		lblNewLabel = new JLabel(&quot;Birthdate&quot;);</span>
+<span class="nc" id="L235">		lblNewLabel.setLabelFor(lblNewLabel);</span>
+<span class="nc" id="L236">		lblNewLabel.setBounds(38, 220, 67, 20);</span>
+<span class="nc" id="L237">		add(lblNewLabel);</span>
+
+<span class="nc" id="L239">		lblemail = new JLabel(&quot;Email&quot;);</span>
+<span class="nc" id="L240">		lblemail.setLabelFor(email);</span>
+<span class="nc" id="L241">		lblemail.setBounds(38, 110, 55, 16);</span>
+<span class="nc" id="L242">		add(lblemail);</span>
+
+<span class="nc" id="L244">	}</span>
+
+	/* (non-Javadoc)
+	 * @see buddychallenge.gui.views.interfaces.SignUpView#open()
+	 */
+	@Override
+	public void open() {
+<span class="nc" id="L251">		previusPanel = mainFrame.getContentPane();</span>
+<span class="nc" id="L252">		mainFrame.setContentPane(this);</span>
+<span class="nc" id="L253">		mainFrame.revalidate();</span>
+<span class="nc" id="L254">		mainFrame.repaint();</span>
+<span class="nc" id="L255">		this.setVisible(true);</span>
+<span class="nc" id="L256">	}</span>
+
+	/* (non-Javadoc)
+	 * @see buddychallenge.gui.views.interfaces.SignUpView#close()
+	 */
+	@Override
+	public void close() {
+<span class="nc" id="L263">		removeAll();</span>
+<span class="nc" id="L264">		mainFrame.setContentPane(previusPanel);</span>
+<span class="nc" id="L265">		mainFrame.revalidate();</span>
+<span class="nc" id="L266">		mainFrame.repaint();</span>
+<span class="nc" id="L267">	}</span>
+
+	/* (non-Javadoc)
+	 * @see buddychallenge.gui.views.interfaces.SignUpView#setSignUpPresenter(buddychallenge.gui.presenters.SignUpPresenter)
+	 */
+	@Override
+	public void setSignUpPresenter(SignUpPresenter presenter) {
+<span class="nc" id="L274">		this.presenter = presenter;</span>
+<span class="nc" id="L275">	}</span>
+
+	/* (non-Javadoc)
+	 * @see buddychallenge.gui.views.interfaces.SignUpView#getUsernameString()
+	 */
+	@Override
+	public String getUsernameString() {
+<span class="nc" id="L282">		return username.getText();</span>
+	}
+
+	/* (non-Javadoc)
+	 * @see buddychallenge.gui.views.interfaces.SignUpView#getPasswordString()
+	 */
+	@SuppressWarnings(&quot;deprecation&quot;)
+	@Override
+	public String getPasswordString() {
+<span class="nc" id="L291">		return password.getText();</span>
+	}
+
+	/* (non-Javadoc)
+	 * @see buddychallenge.gui.views.interfaces.SignUpView#getEmailString()
+	 */
+	@Override
+	public String getEmailString() {
+<span class="nc" id="L299">		return email.getText();</span>
+	}
+
+	/* (non-Javadoc)
+	 * @see buddychallenge.gui.views.interfaces.SignUpView#getFirstName()
+	 */
+	@Override
+	public String getFirstName() {
+<span class="nc" id="L307">		return firstName.getText();</span>
+	}
+
+	/* (non-Javadoc)
+	 * @see buddychallenge.gui.views.interfaces.SignUpView#getLastName()
+	 */
+	@Override
+	public String getLastName() {
+<span class="nc" id="L315">		return lastName.getText();</span>
+	}
+
+	/* (non-Javadoc)
+	 * @see buddychallenge.gui.views.interfaces.SignUpView#getGenderPos()
+	 */
+	public int getGenderPos() {
+<span class="nc bnc" id="L322" title="All 2 branches missed.">		if (maleRB.isSelected())</span>
+<span class="nc" id="L323">			return 0;</span>
+		else
+<span class="nc" id="L325">			return 1;</span>
+	}
+
+	/* (non-Javadoc)
+	 * @see buddychallenge.gui.views.interfaces.SignUpView#getBirthDateString()
+	 */
+	@Override
+	public String getBirthDateString() {
+<span class="nc" id="L333">		return birthDate.getText();</span>
+	}
+
+	/* (non-Javadoc)
+	 * @see buddychallenge.gui.views.interfaces.SignUpView#showMessage(java.lang.String)
+	 */
+	@Override
+	public void showMessage(String message) {
+<span class="nc" id="L341">		JOptionPane.showMessageDialog(this, message);</span>
+
+<span class="nc" id="L343">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>test (3 Ιουν 2015 4:27:49 πμ)</div></body></html>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>HomePagePresenter.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (3 Ιουν 2015 4:27:49 πμ)</a> &gt; <a href="../../index.html" class="el_group">BuddyChallenge</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">buddychallenge.gui.presenters</a> &gt; <span class="el_source">HomePagePresenter.java</span></div><h1>HomePagePresenter.java</h1><pre class="source lang-java linenums">/*
+ * 
+ */
+package buddychallenge.gui.presenters;
+
+import java.util.List;
+
+import buddychallenge.dao.PostsDAO;
+import buddychallenge.entities.User;
+import buddychallenge.gui.views.interfaces.HomePageView;
+import buddychallenge.services.HomePageService;
+
+// TODO: Auto-generated Javadoc
+/**
+ * The Class HomePagePresenter.
+ */
+public class HomePagePresenter{
+	
+	/** The service. */
+	private HomePageService service;
+	
+	/** The current user. */
+	private User currentUser;
+	
+	/** The posts. */
+	private PostsDAO posts;
+	
+	/** The view. */
+	private HomePageView view;
+	
+	/**
+	 * Instantiates a new home page presenter.
+	 *
+	 * @param view the view
+	 * @param currentUser the current user
+	 * @param posts the posts
+	 */
+<span class="nc" id="L38">	public HomePagePresenter(HomePageView view, User currentUser, PostsDAO posts){</span>
+<span class="nc" id="L39">		this.view = view;</span>
+<span class="nc" id="L40">		this.currentUser = currentUser;</span>
+<span class="nc" id="L41">		this.posts = posts;</span>
+<span class="nc" id="L42">		this.setService(new HomePageService(this.currentUser, this.posts));</span>
+<span class="nc" id="L43">	}</span>
+	
+	/**
+	 * Sets the home page serv.
+	 *
+	 * @param service the new home page serv
+	 */
+	public void setService(HomePageService service){
+<span class="nc" id="L51">		this.service = service;</span>
+<span class="nc" id="L52">	}</span>
+	
+	/**
+	 * Start.
+	 */
+	public void start(){
+<span class="nc" id="L58">		view.setHomePagePresenter(this);</span>
+<span class="nc" id="L59">		view.open();</span>
+<span class="nc" id="L60">	}</span>
+	
+	
+	/**
+	 * Gets the posts.
+	 *
+	 * @return the posts
+	 */
+	public List&lt;String&gt; getPosts() {
+<span class="nc" id="L69">		return this.service.getPostsAsString();</span>
+	}
+	
+	/**
+	 * Gets the profile name.
+	 *
+	 * @return the profile name
+	 */
+	public String getProfileName() {
+<span class="nc" id="L78">		User u = this.service.getCurrentUser();</span>
+<span class="nc" id="L79">		return u.getFirstname() + &quot; &quot; + u.getLastname();</span>
+	}
+	
+	
+	/**
+	 * Cancel.
+	 */
+	public void cancel() {
+<span class="nc" id="L87">		view.close();</span>
+<span class="nc" id="L88">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>test (3 Ιουν 2015 4:27:49 πμ)</div></body></html>

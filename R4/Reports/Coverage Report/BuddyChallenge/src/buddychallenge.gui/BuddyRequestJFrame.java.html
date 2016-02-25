@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>BuddyRequestJFrame.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (3 Ιουν 2015 4:27:49 πμ)</a> &gt; <a href="../../index.html" class="el_group">BuddyChallenge</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">buddychallenge.gui</a> &gt; <span class="el_source">BuddyRequestJFrame.java</span></div><h1>BuddyRequestJFrame.java</h1><pre class="source lang-java linenums"><span class="nc" id="L1">/*</span>
+ * 
+ */
+package buddychallenge.gui;
+
+import java.awt.Color;
+
+import javax.swing.ButtonGroup;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+
+import buddychallenge.entities.Question;
+import buddychallenge.gui.presenters.BuddyRequestPresenter;
+import buddychallenge.gui.views.interfaces.BuddyRequestView;
+
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+// TODO: Auto-generated Javadoc
+/**
+ * The Class BuddyRequestJFrame.
+ */
+public class BuddyRequestJFrame extends JFrame implements BuddyRequestView{
+	
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+
+	/** The presenter. */
+	private BuddyRequestPresenter presenter;
+	
+	/** The btngroup1. */
+	private ButtonGroup btngroup1;
+	
+	/** The lbl q1. */
+	JLabel lblQ1;
+	
+	/** The lbl question1. */
+	JLabel lblQuestion1;
+	
+	/** The panel1. */
+	JPanel panel1;
+	
+	/** The rdbtn q1 o1. */
+	JRadioButton rdbtnQ1O1;
+	
+	/** The rdbtn q1 o2. */
+	JRadioButton rdbtnQ1O2;
+	
+	/** The btngroup2. */
+	private ButtonGroup btngroup2;
+	
+	/** The lbl q2. */
+	JLabel lblQ2;
+	
+	/** The lbl question2. */
+	JLabel lblQuestion2;
+	
+	/** The panel2. */
+	JPanel panel2;
+	
+	/** The rdbtn q2 o1. */
+	JRadioButton rdbtnQ2O1;
+	
+	/** The rdbtn q2 o2. */
+	JRadioButton rdbtnQ2O2;
+	
+	/** The btngroup3. */
+	private ButtonGroup btngroup3;
+	
+	/** The lbl q3. */
+	JLabel lblQ3;
+	
+	/** The lbl question3. */
+	JLabel lblQuestion3;
+	
+	/** The panel3. */
+	JPanel panel3;
+	
+	/** The rdbtn q3 o1. */
+	JRadioButton rdbtnQ3O1;
+	
+	/** The rdbtn q3 o2. */
+	JRadioButton rdbtnQ3O2;
+	
+	/** The btngroup4. */
+	private ButtonGroup btngroup4;
+	
+	/** The lbl q4. */
+	JLabel lblQ4;
+	
+	/** The lbl question4. */
+	JLabel lblQuestion4;
+	
+	/** The panel4. */
+	JPanel panel4;
+	
+	/** The rdbtn q4 o1. */
+	JRadioButton rdbtnQ4O1;
+	
+	/** The rdbtn q4 o2. */
+	JRadioButton rdbtnQ4O2;
+	
+	/** The btngroup5. */
+	private ButtonGroup btngroup5;
+	
+	/** The lbl q5. */
+	JLabel lblQ5;
+	
+	/** The lbl question5. */
+	JLabel lblQuestion5;
+	
+	/** The panel5. */
+	JPanel panel5;
+	
+	/** The rdbtn q5 o1. */
+	JRadioButton rdbtnQ5O1;
+	
+	/** The rdbtn q5 o2. */
+	JRadioButton rdbtnQ5O2;
+	
+	/** The previus frame. */
+	private JFrame previusFrame;
+	
+	/** The q1. */
+	private Question q1;
+	
+	/** The q2. */
+	private Question q2;
+	
+	/** The q3. */
+	private Question q3;
+	
+	/** The q4. */
+	private Question q4;
+	
+	/** The q5. */
+	private Question q5;
+	
+	
+	
+	/**
+	 * Instantiates a new buddy request j frame.
+	 *
+	 * @param frame the frame
+	 */
+<span class="nc" id="L150">	public BuddyRequestJFrame(JFrame frame) {</span>
+		
+<span class="nc" id="L152">		this.setPreviusFrame(frame);</span>
+<span class="nc" id="L153">		getContentPane().setBackground(Color.ORANGE);</span>
+<span class="nc" id="L154">		getContentPane().setLayout(null);</span>
+<span class="nc" id="L155">		setSize(430, 420);</span>
+		
+<span class="nc" id="L157">		JLabel lblNewLabel = new JLabel(&quot;Answer questions&quot;);</span>
+<span class="nc" id="L158">		lblNewLabel.setBounds(169, 12, 128, 15);</span>
+<span class="nc" id="L159">		getContentPane().add(lblNewLabel);</span>
+		
+<span class="nc" id="L161">		lblQ1 = new JLabel(&quot;Question 1:&quot;);</span>
+<span class="nc" id="L162">		lblQ1.setBounds(12, 31, 90, 15);</span>
+<span class="nc" id="L163">		getContentPane().add(lblQ1);</span>
+		
+<span class="nc" id="L165">		lblQuestion1 = new JLabel(&quot;&quot;);</span>
+<span class="nc" id="L166">		lblQuestion1.setBounds(109, 31, 307, 15);</span>
+<span class="nc" id="L167">		getContentPane().add(lblQuestion1);</span>
+		
+<span class="nc" id="L169">		panel1 = new JPanel();</span>
+<span class="nc" id="L170">		panel1.setBackground(Color.ORANGE);</span>
+<span class="nc" id="L171">		panel1.setBounds(109, 52, 200, 25);</span>
+<span class="nc" id="L172">		getContentPane().add(panel1);</span>
+		
+<span class="nc" id="L174">		rdbtnQ1O1 = new JRadioButton(&quot;&quot;);</span>
+<span class="nc" id="L175">		rdbtnQ1O1.setBackground(Color.ORANGE);</span>
+<span class="nc" id="L176">		panel1.add(rdbtnQ1O1);</span>
+		
+<span class="nc" id="L178">		rdbtnQ1O2 = new JRadioButton(&quot;&quot;);</span>
+<span class="nc" id="L179">		rdbtnQ1O2.setBackground(Color.ORANGE);</span>
+<span class="nc" id="L180">		panel1.add(rdbtnQ1O2);</span>
+		
+<span class="nc" id="L182">		btngroup1 = new ButtonGroup();</span>
+<span class="nc" id="L183">		btngroup1.add(rdbtnQ1O1);</span>
+<span class="nc" id="L184">		btngroup1.add(rdbtnQ1O2);</span>
+		//question 2
+<span class="nc" id="L186">		lblQ2 = new JLabel(&quot;Question 2:&quot;);</span>
+<span class="nc" id="L187">		lblQ2.setBounds(12, 89, 90, 15); //y+58</span>
+<span class="nc" id="L188">		getContentPane().add(lblQ2);</span>
+		
+<span class="nc" id="L190">		lblQuestion2 = new JLabel(&quot;&quot;);</span>
+<span class="nc" id="L191">		lblQuestion2.setBounds(109, 89, 307, 15); //y+58</span>
+<span class="nc" id="L192">		getContentPane().add(lblQuestion2);</span>
+		
+<span class="nc" id="L194">		panel2 = new JPanel();</span>
+<span class="nc" id="L195">		panel2.setBackground(Color.ORANGE);</span>
+<span class="nc" id="L196">		panel2.setBounds(109, 107, 200, 25); //y+55</span>
+<span class="nc" id="L197">		getContentPane().add(panel2);</span>
+		
+<span class="nc" id="L199">		rdbtnQ2O1 = new JRadioButton(&quot;&quot;);</span>
+<span class="nc" id="L200">		rdbtnQ2O1.setBackground(Color.ORANGE);</span>
+<span class="nc" id="L201">		panel2.add(rdbtnQ2O1);</span>
+		
+<span class="nc" id="L203">		rdbtnQ2O2 = new JRadioButton(&quot;&quot;);</span>
+<span class="nc" id="L204">		rdbtnQ2O2.setBackground(Color.ORANGE);</span>
+<span class="nc" id="L205">		panel2.add(rdbtnQ2O2);</span>
+		
+<span class="nc" id="L207">		btngroup2 = new ButtonGroup();</span>
+<span class="nc" id="L208">		btngroup2.add(rdbtnQ2O1);</span>
+<span class="nc" id="L209">		btngroup2.add(rdbtnQ2O2);</span>
+		
+		//question 3
+<span class="nc" id="L212">		lblQ3 = new JLabel(&quot;Question 3:&quot;);</span>
+<span class="nc" id="L213">		lblQ3.setBounds(12, 147, 90, 15); //y+58</span>
+<span class="nc" id="L214">		getContentPane().add(lblQ3);</span>
+		
+<span class="nc" id="L216">		lblQuestion3 = new JLabel(&quot;&quot;);</span>
+<span class="nc" id="L217">		lblQuestion3.setBounds(109, 147, 307, 15); //y+58</span>
+<span class="nc" id="L218">		getContentPane().add(lblQuestion3);</span>
+		
+<span class="nc" id="L220">		panel3 = new JPanel();</span>
+<span class="nc" id="L221">		panel3.setBackground(Color.ORANGE);</span>
+<span class="nc" id="L222">		panel3.setBounds(109, 165, 200, 25); //y+55</span>
+<span class="nc" id="L223">		getContentPane().add(panel3);</span>
+		
+<span class="nc" id="L225">		rdbtnQ3O1 = new JRadioButton(&quot;&quot;);</span>
+<span class="nc" id="L226">		rdbtnQ3O1.setBackground(Color.ORANGE);</span>
+<span class="nc" id="L227">		panel3.add(rdbtnQ3O1);</span>
+		
+<span class="nc" id="L229">		rdbtnQ3O2 = new JRadioButton(&quot;&quot;);</span>
+<span class="nc" id="L230">		rdbtnQ3O2.setBackground(Color.ORANGE);</span>
+<span class="nc" id="L231">		panel3.add(rdbtnQ3O2);</span>
+		
+<span class="nc" id="L233">		btngroup3 = new ButtonGroup();</span>
+<span class="nc" id="L234">		btngroup3.add(rdbtnQ3O1);</span>
+<span class="nc" id="L235">		btngroup3.add(rdbtnQ3O2);</span>
+		
+		//question 4
+<span class="nc" id="L238">		lblQ4 = new JLabel(&quot;Question 4:&quot;);</span>
+<span class="nc" id="L239">		lblQ4.setBounds(12, 205, 90, 15); //y+58</span>
+<span class="nc" id="L240">		getContentPane().add(lblQ4);</span>
+				
+<span class="nc" id="L242">		lblQuestion4 = new JLabel(&quot;&quot;);</span>
+<span class="nc" id="L243">		lblQuestion4.setBounds(109, 205, 307, 15); //y+58</span>
+<span class="nc" id="L244">		getContentPane().add(lblQuestion4);</span>
+				
+<span class="nc" id="L246">		panel4 = new JPanel();</span>
+<span class="nc" id="L247">		panel4.setBackground(Color.ORANGE);</span>
+<span class="nc" id="L248">		panel4.setBounds(109, 223, 200, 25); //y+55</span>
+<span class="nc" id="L249">		getContentPane().add(panel4);</span>
+				
+<span class="nc" id="L251">		rdbtnQ4O1 = new JRadioButton(&quot;&quot;);</span>
+<span class="nc" id="L252">		rdbtnQ4O1.setBackground(Color.ORANGE);</span>
+<span class="nc" id="L253">		panel4.add(rdbtnQ4O1);</span>
+				
+<span class="nc" id="L255">		rdbtnQ4O2 = new JRadioButton(&quot;&quot;);</span>
+<span class="nc" id="L256">		rdbtnQ4O2.setBackground(Color.ORANGE);</span>
+<span class="nc" id="L257">		panel4.add(rdbtnQ4O2);</span>
+				
+<span class="nc" id="L259">		btngroup4 = new ButtonGroup();</span>
+<span class="nc" id="L260">		btngroup4.add(rdbtnQ4O1);</span>
+<span class="nc" id="L261">		btngroup4.add(rdbtnQ4O2);</span>
+		
+		//question 5
+<span class="nc" id="L264">		lblQ5 = new JLabel(&quot;Question 5:&quot;);</span>
+<span class="nc" id="L265">		lblQ5.setBounds(12, 263, 90, 15); //y+58</span>
+<span class="nc" id="L266">		getContentPane().add(lblQ5);</span>
+				
+<span class="nc" id="L268">		lblQuestion5 = new JLabel(&quot;&quot;);</span>
+<span class="nc" id="L269">		lblQuestion5.setBounds(109, 263, 307, 15); //y+58</span>
+<span class="nc" id="L270">		getContentPane().add(lblQuestion5);</span>
+				
+<span class="nc" id="L272">		panel5 = new JPanel();</span>
+<span class="nc" id="L273">		panel5.setBackground(Color.ORANGE);</span>
+<span class="nc" id="L274">		panel5.setBounds(109, 281, 200, 25); //y+55</span>
+<span class="nc" id="L275">		getContentPane().add(panel5);</span>
+				
+<span class="nc" id="L277">		rdbtnQ5O1 = new JRadioButton(&quot;&quot;);</span>
+<span class="nc" id="L278">		rdbtnQ5O1.setBackground(Color.ORANGE);</span>
+<span class="nc" id="L279">		panel5.add(rdbtnQ5O1);</span>
+				
+<span class="nc" id="L281">		rdbtnQ5O2 = new JRadioButton(&quot;&quot;);</span>
+<span class="nc" id="L282">		rdbtnQ5O2.setBackground(Color.ORANGE);</span>
+<span class="nc" id="L283">		panel5.add(rdbtnQ5O2);</span>
+				
+<span class="nc" id="L285">		btngroup5 = new ButtonGroup();</span>
+<span class="nc" id="L286">		btngroup5.add(rdbtnQ5O1);</span>
+<span class="nc" id="L287">		btngroup5.add(rdbtnQ5O2);</span>
+		
+<span class="nc" id="L289">		JButton btnSubmit = new JButton(&quot;submit&quot;);</span>
+<span class="nc" id="L290">		btnSubmit.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L292">				presenter.sendQuestions();</span>
+<span class="nc" id="L293">			}</span>
+		});
+<span class="nc" id="L295">		btnSubmit.setBackground(new Color(255, 99, 71));</span>
+<span class="nc" id="L296">		btnSubmit.setBounds(152, 318, 117, 25);</span>
+<span class="nc" id="L297">		getContentPane().add(btnSubmit);</span>
+		
+<span class="nc" id="L299">		JPanel panel = new JPanel();</span>
+<span class="nc" id="L300">		panel.setLayout(null);</span>
+<span class="nc" id="L301">	}</span>
+
+	/* (non-Javadoc)
+	 * @see buddychallenge.gui.views.interfaces.BuddyRequestView#open()
+	 */
+	@Override
+	public void open() {
+<span class="nc" id="L308">		this.setVisible(true);</span>
+<span class="nc" id="L309">		initialize();</span>
+<span class="nc" id="L310">		setDefaultCloseOperation(HIDE_ON_CLOSE);</span>
+<span class="nc" id="L311">	}</span>
+
+	/**
+	 * Initialize.
+	 */
+	private void initialize() {
+<span class="nc" id="L317">		q1 = presenter.getQuestion();		</span>
+<span class="nc" id="L318">		lblQuestion1.setText(q1.getQuestion());</span>
+<span class="nc" id="L319">		rdbtnQ1O1.setText(q1.getOptions().get(0));</span>
+<span class="nc" id="L320">		rdbtnQ1O2.setText(q1.getOptions().get(1));</span>
+		
+<span class="nc" id="L322">		q2 = presenter.getQuestion();</span>
+<span class="nc" id="L323">		lblQuestion2.setText(q2.getQuestion());</span>
+<span class="nc" id="L324">		rdbtnQ2O1.setText(q2.getOptions().get(0));</span>
+<span class="nc" id="L325">		rdbtnQ2O2.setText(q2.getOptions().get(1));</span>
+		
+<span class="nc" id="L327">		q3 = presenter.getQuestion();</span>
+<span class="nc" id="L328">		lblQuestion3.setText(q3.getQuestion());</span>
+<span class="nc" id="L329">		rdbtnQ3O1.setText(q3.getOptions().get(0));</span>
+<span class="nc" id="L330">		rdbtnQ3O2.setText(q3.getOptions().get(1));</span>
+		
+<span class="nc" id="L332">		q4 = presenter.getQuestion();</span>
+<span class="nc" id="L333">		lblQuestion4.setText(q4.getQuestion());</span>
+<span class="nc" id="L334">		rdbtnQ4O1.setText(q4.getOptions().get(0));</span>
+<span class="nc" id="L335">		rdbtnQ4O2.setText(q4.getOptions().get(1));</span>
+		
+<span class="nc" id="L337">		q5 = presenter.getQuestion();</span>
+<span class="nc" id="L338">		lblQuestion5.setText(q5.getQuestion());</span>
+<span class="nc" id="L339">		rdbtnQ5O1.setText(q5.getOptions().get(0));</span>
+<span class="nc" id="L340">		rdbtnQ5O2.setText(q5.getOptions().get(1));</span>
+		
+<span class="nc" id="L342">	}</span>
+
+	/* (non-Javadoc)
+	 * @see buddychallenge.gui.views.interfaces.BuddyRequestView#close()
+	 */
+	@Override
+	public void close() {
+<span class="nc" id="L349">		this.setVisible(false);</span>
+<span class="nc" id="L350">	}</span>
+
+	/* (non-Javadoc)
+	 * @see buddychallenge.gui.views.interfaces.BuddyRequestView#showMessage(java.lang.String)
+	 */
+	@Override
+	public void showMessage(String message) {
+<span class="nc" id="L357">		JOptionPane.showMessageDialog(this, message);</span>
+<span class="nc" id="L358">	}</span>
+
+	/* (non-Javadoc)
+	 * @see buddychallenge.gui.views.interfaces.BuddyRequestView#setBuddyRequestPresenter(buddychallenge.gui.presenters.BuddyRequestPresenter)
+	 */
+	@Override
+	public void setBuddyRequestPresenter(
+			BuddyRequestPresenter buddyRequestPresenter) {
+<span class="nc" id="L366">		presenter = buddyRequestPresenter;</span>
+<span class="nc" id="L367">	}</span>
+	
+	/* (non-Javadoc)
+	 * @see buddychallenge.gui.views.interfaces.BuddyRequestView#getQuestion1()
+	 */
+	public Question getQuestion1(){
+<span class="nc" id="L373">		return q1;</span>
+	}
+	
+	/* (non-Javadoc)
+	 * @see buddychallenge.gui.views.interfaces.BuddyRequestView#getAnswer1()
+	 */
+	public String getAnswer1(){
+<span class="nc bnc" id="L380" title="All 2 branches missed.">		if(rdbtnQ1O1.isSelected())</span>
+<span class="nc" id="L381">			return rdbtnQ1O1.getText();</span>
+<span class="nc bnc" id="L382" title="All 2 branches missed.">		else if(rdbtnQ1O2.isSelected())</span>
+<span class="nc" id="L383">			return rdbtnQ1O2.getText();</span>
+<span class="nc" id="L384">		else return null;</span>
+	}
+	
+	/* (non-Javadoc)
+	 * @see buddychallenge.gui.views.interfaces.BuddyRequestView#getQuestion2()
+	 */
+	public Question getQuestion2(){
+<span class="nc" id="L391">		return q2;</span>
+	}
+	
+	/* (non-Javadoc)
+	 * @see buddychallenge.gui.views.interfaces.BuddyRequestView#getAnswer2()
+	 */
+	public String getAnswer2(){
+<span class="nc bnc" id="L398" title="All 2 branches missed.">		if(rdbtnQ2O1.isSelected())</span>
+<span class="nc" id="L399">			return rdbtnQ2O1.getText();</span>
+<span class="nc bnc" id="L400" title="All 2 branches missed.">		else if(rdbtnQ2O2.isSelected())</span>
+<span class="nc" id="L401">			return rdbtnQ2O2.getText();</span>
+<span class="nc" id="L402">		else return null;</span>
+	}
+	
+	/* (non-Javadoc)
+	 * @see buddychallenge.gui.views.interfaces.BuddyRequestView#getQuestion3()
+	 */
+	public Question getQuestion3(){
+<span class="nc" id="L409">		return q3;</span>
+	}
+	
+	/* (non-Javadoc)
+	 * @see buddychallenge.gui.views.interfaces.BuddyRequestView#getAnswer3()
+	 */
+	public String getAnswer3(){
+<span class="nc bnc" id="L416" title="All 2 branches missed.">		if(rdbtnQ3O1.isSelected())</span>
+<span class="nc" id="L417">			return rdbtnQ3O1.getText();</span>
+<span class="nc bnc" id="L418" title="All 2 branches missed.">		else if(rdbtnQ3O2.isSelected())</span>
+<span class="nc" id="L419">			return rdbtnQ3O2.getText();</span>
+<span class="nc" id="L420">		else return null;</span>
+	}
+	
+	/* (non-Javadoc)
+	 * @see buddychallenge.gui.views.interfaces.BuddyRequestView#getQuestion4()
+	 */
+	public Question getQuestion4(){
+<span class="nc" id="L427">		return q4;</span>
+	}
+	
+	/* (non-Javadoc)
+	 * @see buddychallenge.gui.views.interfaces.BuddyRequestView#getAnswer4()
+	 */
+	public String getAnswer4(){
+<span class="nc bnc" id="L434" title="All 2 branches missed.">		if(rdbtnQ4O1.isSelected())</span>
+<span class="nc" id="L435">			return rdbtnQ4O1.getText();</span>
+<span class="nc bnc" id="L436" title="All 2 branches missed.">		else if(rdbtnQ4O2.isSelected())</span>
+<span class="nc" id="L437">			return rdbtnQ4O2.getText();</span>
+<span class="nc" id="L438">		else return null;</span>
+	}
+	
+	/* (non-Javadoc)
+	 * @see buddychallenge.gui.views.interfaces.BuddyRequestView#getQuestion5()
+	 */
+	public Question getQuestion5(){
+<span class="nc" id="L445">		return q5;</span>
+	}
+	
+	/* (non-Javadoc)
+	 * @see buddychallenge.gui.views.interfaces.BuddyRequestView#getAnswer5()
+	 */
+	public String getAnswer5(){
+<span class="nc bnc" id="L452" title="All 2 branches missed.">		if(rdbtnQ5O1.isSelected())</span>
+<span class="nc" id="L453">			return rdbtnQ5O1.getText();</span>
+<span class="nc bnc" id="L454" title="All 2 branches missed.">		else if(rdbtnQ5O2.isSelected())</span>
+<span class="nc" id="L455">			return rdbtnQ5O2.getText();</span>
+<span class="nc" id="L456">		else return null;</span>
+	}
+
+	/* (non-Javadoc)
+	 * @see buddychallenge.gui.views.interfaces.BuddyRequestView#getPreviusFrame()
+	 */
+	public JFrame getPreviusFrame() {
+<span class="nc" id="L463">		return previusFrame;</span>
+	}
+
+	/**
+	 * Sets the previus frame.
+	 *
+	 * @param previusFrame the new previus frame
+	 */
+	public void setPreviusFrame(JFrame previusFrame) {
+<span class="nc" id="L472">		this.previusFrame = previusFrame;</span>
+<span class="nc" id="L473">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>test (3 Ιουν 2015 4:27:49 πμ)</div></body></html>

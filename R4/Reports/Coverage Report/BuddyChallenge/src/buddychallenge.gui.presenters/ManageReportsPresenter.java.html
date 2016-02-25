@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>ManageReportsPresenter.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (3 Ιουν 2015 4:27:49 πμ)</a> &gt; <a href="../../index.html" class="el_group">BuddyChallenge</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">buddychallenge.gui.presenters</a> &gt; <span class="el_source">ManageReportsPresenter.java</span></div><h1>ManageReportsPresenter.java</h1><pre class="source lang-java linenums">package buddychallenge.gui.presenters;
+
+import java.util.List;
+
+import buddychallenge.dao.PostsDAO;
+import buddychallenge.dao.ReportsDAO;
+import buddychallenge.entities.Report;
+import buddychallenge.gui.views.interfaces.ManageReportsView;
+import buddychallenge.services.ManageReportsService;
+
+public class ManageReportsPresenter {
+	ManageReportsView view;
+	ManageReportsService service;
+	Report r;
+
+<span class="nc" id="L16">	public ManageReportsPresenter(ManageReportsView view, ReportsDAO reports,</span>
+			PostsDAO posts) {
+<span class="nc" id="L18">		this.view = view;</span>
+<span class="nc" id="L19">		service = new ManageReportsService(reports, posts);</span>
+<span class="nc" id="L20">	}</span>
+
+	public void start() {
+<span class="nc" id="L23">		view.setManageReportsPresenter(this);</span>
+<span class="nc" id="L24">		view.open();</span>
+<span class="nc" id="L25">	}</span>
+
+	public List&lt;String&gt; getReportsList() {
+<span class="nc" id="L28">		return service.getReportsListString();</span>
+	}
+
+	public void showReportDetails() {
+<span class="nc bnc" id="L32" title="All 2 branches missed.">		if(view.getSelectedValue() != null){</span>
+<span class="nc" id="L33">			String reportText = view.getSelectedValue();</span>
+<span class="nc" id="L34">			int pos1 = reportText.indexOf(&quot;:&quot;);</span>
+<span class="nc" id="L35">			int pos2 = reportText.indexOf(&quot;,&quot;);</span>
+<span class="nc" id="L36">			reportText = reportText.substring(pos1+1,pos2);</span>
+<span class="nc" id="L37">			reportText = reportText.trim();</span>
+<span class="nc" id="L38">			r = service.getReportDetails(Integer.parseInt(reportText));</span>
+<span class="nc" id="L39">			view.showMessage(&quot;ID: &quot;+r.getReportID()+&quot;,Post: &quot;+r.getPost().getText()+&quot;\nReason: &quot;+r.getReason()+&quot;\nCategory: &quot;+r.getCategory().toString() + &quot;\nCreator: &quot;+r.getPost().getUser().getFirstname()+&quot; &quot;+r.getPost().getUser().getLastname()+&quot;\nReported By: &quot;+r.getUser().getFirstname()+&quot; &quot;+r.getUser().getLastname());		</span>
+		}
+<span class="nc" id="L41">	}</span>
+
+	public void deletePost() {
+<span class="nc" id="L44">		service.deletePost(r);</span>
+<span class="nc" id="L45">	}</span>
+
+	public void deleteReport() {
+<span class="nc" id="L48">		service.deleteReport(r);</span>
+<span class="nc" id="L49">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>test (3 Ιουν 2015 4:27:49 πμ)</div></body></html>

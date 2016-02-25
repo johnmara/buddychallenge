@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>ShowPostDetailsJFrame.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (3 Ιουν 2015 4:27:49 πμ)</a> &gt; <a href="../../index.html" class="el_group">BuddyChallenge</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">buddychallenge.gui</a> &gt; <span class="el_source">ShowPostDetailsJFrame.java</span></div><h1>ShowPostDetailsJFrame.java</h1><pre class="source lang-java linenums"><span class="nc" id="L1">package buddychallenge.gui;</span>
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import buddychallenge.entities.Comment;
+import buddychallenge.gui.presenters.ShowPostDetailsPresenter;
+import buddychallenge.gui.views.interfaces.ShowPostDetailsView;
+import buddychallenge.util.Category;
+
+import java.awt.Color;
+
+import javax.swing.ButtonGroup;
+import javax.swing.DefaultListModel;
+import javax.swing.Icon;
+import javax.swing.JList;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.util.List;
+
+import javax.swing.JTextField;
+import javax.swing.JRadioButton;
+
+public class ShowPostDetailsJFrame extends JFrame implements ShowPostDetailsView{
+
+	private static final long serialVersionUID = 1L;
+	
+	private JList&lt;String&gt; list;
+	private DefaultListModel&lt;String&gt; listModel;
+	
+	private JRadioButton rdbtnCat1;
+	private JRadioButton rdbtnCat2;
+	private JRadioButton rdbtnCat3;
+	private ButtonGroup btgGroup;
+	
+	private ShowPostDetailsPresenter presenter;
+	private JTextField textReason;
+	private JTextField textFieldCommentText;
+	
+	private JLabel labelPostText;
+	private JButton btnRefresh;
+	
+<span class="nc" id="L47">	public ShowPostDetailsJFrame(){</span>
+<span class="nc" id="L48">		getContentPane().setBackground(Color.ORANGE);</span>
+<span class="nc" id="L49">		getContentPane().setLayout(null);</span>
+<span class="nc" id="L50">		this.setDefaultCloseOperation(HIDE_ON_CLOSE);</span>
+<span class="nc" id="L51">		this.setSize(538, 391);</span>
+		
+		
+<span class="nc" id="L54">		listModel = new DefaultListModel&lt;String&gt;();</span>
+<span class="nc" id="L55">		list = new JList&lt;String&gt;(listModel);</span>
+<span class="nc" id="L56">		list.setBounds(23, 102, 288, 116);</span>
+<span class="nc" id="L57">		getContentPane().add(list);</span>
+		
+<span class="nc" id="L59">		JButton btnAddComment = new JButton(&quot;Add Comment&quot;);</span>
+<span class="nc" id="L60">		btnAddComment.setBackground(new Color(255, 99, 71));</span>
+<span class="nc" id="L61">		btnAddComment.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L63">				presenter.addComment();</span>
+<span class="nc" id="L64">			}</span>
+		});
+<span class="nc" id="L66">		btnAddComment.setBounds(94, 276, 141, 23);</span>
+<span class="nc" id="L67">		getContentPane().add(btnAddComment);</span>
+		
+<span class="nc" id="L69">		labelPostText = new JLabel(&quot;&quot;);</span>
+<span class="nc" id="L70">		labelPostText.setBounds(84, 10, 236, 50);</span>
+<span class="nc" id="L71">		getContentPane().add(labelPostText);</span>
+
+		
+<span class="nc" id="L74">		JButton btnReport = new JButton(&quot;&quot;);</span>
+<span class="nc" id="L75">		btnReport.setBackground(new Color(255, 99, 71));</span>
+<span class="nc" id="L76">		btnReport.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L78">				presenter.reportPost();</span>
+<span class="nc" id="L79">			}</span>
+		});
+<span class="nc" id="L81">		btnReport.setIcon(new ImageIcon(ShowPostDetailsJFrame.class.getResource(&quot;/javax/swing/plaf/metal/icons/Warn.gif&quot;)));</span>
+<span class="nc" id="L82">		btnReport.setBounds(384, 169, 40, 50);</span>
+<span class="nc" id="L83">		getContentPane().add(btnReport);</span>
+		
+<span class="nc" id="L85">		Icon refreshIcon = new ImageIcon(this.getClass().getResource(&quot;/refresh.png&quot;));</span>
+<span class="nc" id="L86">		btnRefresh = new JButton(refreshIcon);</span>
+<span class="nc" id="L87">		btnRefresh.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L89">				refresh();</span>
+<span class="nc" id="L90">			}</span>
+		});
+<span class="nc" id="L92">		btnRefresh.setBackground(Color.ORANGE);</span>
+<span class="nc" id="L93">		btnRefresh.setBounds(23, 10, 30, 30);</span>
+<span class="nc" id="L94">		getContentPane().add(btnRefresh);</span>
+		
+		
+<span class="nc" id="L97">		textReason = new JTextField();</span>
+<span class="nc" id="L98">		textReason.setToolTipText(&quot;Reason&quot;);</span>
+<span class="nc" id="L99">		textReason.setBounds(343, 8, 155, 31);</span>
+<span class="nc" id="L100">		getContentPane().add(textReason);</span>
+<span class="nc" id="L101">		textReason.setColumns(10);</span>
+		
+<span class="nc" id="L103">		rdbtnCat1 = new JRadioButton(&quot;Violation&quot;);</span>
+<span class="nc" id="L104">		rdbtnCat1.setBackground(Color.ORANGE);</span>
+<span class="nc" id="L105">		rdbtnCat1.setBounds(343, 46, 103, 31);</span>
+<span class="nc" id="L106">		rdbtnCat1.setSelected(true);</span>
+<span class="nc" id="L107">		getContentPane().add(rdbtnCat1);</span>
+		
+<span class="nc" id="L109">		rdbtnCat2 = new JRadioButton(&quot;Racism&quot;);</span>
+<span class="nc" id="L110">		rdbtnCat2.setBackground(Color.ORANGE);</span>
+<span class="nc" id="L111">		rdbtnCat2.setBounds(343, 80, 103, 31);</span>
+<span class="nc" id="L112">		getContentPane().add(rdbtnCat2);</span>
+		
+<span class="nc" id="L114">		rdbtnCat3 = new JRadioButton(&quot;Spam&quot;);</span>
+<span class="nc" id="L115">		rdbtnCat3.setBackground(Color.ORANGE);</span>
+<span class="nc" id="L116">		rdbtnCat3.setBounds(343, 117, 103, 31);</span>
+<span class="nc" id="L117">		getContentPane().add(rdbtnCat3);</span>
+		
+<span class="nc" id="L119">		btgGroup = new ButtonGroup();</span>
+<span class="nc" id="L120">		btgGroup.add(rdbtnCat1);</span>
+<span class="nc" id="L121">		btgGroup.add(rdbtnCat2);</span>
+<span class="nc" id="L122">		btgGroup.add(rdbtnCat3);</span>
+		
+<span class="nc" id="L124">		textFieldCommentText = new JTextField();</span>
+<span class="nc" id="L125">		textFieldCommentText.setBounds(84, 241, 176, 23);</span>
+<span class="nc" id="L126">		getContentPane().add(textFieldCommentText);</span>
+<span class="nc" id="L127">		textFieldCommentText.setColumns(10);</span>
+		
+<span class="nc" id="L129">	}</span>
+	
+
+	private void refresh() {
+<span class="nc bnc" id="L133" title="All 2 branches missed.">		if(!listModel.isEmpty())</span>
+<span class="nc" id="L134">			listModel.clear();</span>
+		
+<span class="nc" id="L136">		List&lt;Comment&gt; commentList = presenter.getComments();</span>
+<span class="nc bnc" id="L137" title="All 2 branches missed.">		for(Comment c : commentList){</span>
+<span class="nc" id="L138">			listModel.addElement(c.getUser().getFirstname() +&quot; &quot;+c.getUser().getLastname() + &quot;:&quot; +c.getText());</span>
+		}
+		
+<span class="nc" id="L141">	}</span>
+
+
+	@Override
+	public void open() {
+<span class="nc" id="L146">		this.setVisible(true);</span>
+<span class="nc" id="L147">		labelPostText.setText(presenter.getPostText());</span>
+<span class="nc bnc" id="L148" title="All 2 branches missed.">		if(!listModel.isEmpty())</span>
+<span class="nc" id="L149">			listModel.clear();</span>
+		
+<span class="nc" id="L151">		List&lt;Comment&gt; commentList = presenter.getComments();</span>
+<span class="nc bnc" id="L152" title="All 2 branches missed.">		for(Comment c : commentList){</span>
+<span class="nc" id="L153">			listModel.addElement(c.getUser().getFirstname() +&quot; &quot;+c.getUser().getLastname() + &quot;:&quot; +c.getText());</span>
+		}
+<span class="nc" id="L155">	}</span>
+
+	@Override
+	public void close() {
+<span class="nc" id="L159">		this.setVisible(false);</span>
+<span class="nc" id="L160">	}</span>
+	
+	@Override
+	public String getReasonString() {
+<span class="nc" id="L164">		return textReason.getText();</span>
+	}
+
+
+	@Override
+	public Category getCategory() {
+<span class="nc bnc" id="L170" title="All 2 branches missed.">		if(rdbtnCat1.isSelected())</span>
+<span class="nc" id="L171">			return Category.category1;</span>
+<span class="nc bnc" id="L172" title="All 2 branches missed.">		else if(rdbtnCat2.isSelected())</span>
+<span class="nc" id="L173">			return Category.category2;</span>
+		else
+<span class="nc" id="L175">			return Category.category3;</span>
+			
+	}
+	
+	@Override
+	public String getCommentString() {
+<span class="nc" id="L181">		return textFieldCommentText.getText();</span>
+	}
+
+	@Override
+	public void setShowPostDetailsPresenter(ShowPostDetailsPresenter presenter) {
+<span class="nc" id="L186">		this.presenter = presenter;</span>
+<span class="nc" id="L187">	}</span>
+
+	@Override
+	public void showMessage(String message) {
+<span class="nc" id="L191">		JOptionPane.showMessageDialog(this, message);		</span>
+<span class="nc" id="L192">	}</span>
+
+	@Override
+	public String getSelectedValue() {
+		
+<span class="nc" id="L197">		return null;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>test (3 Ιουν 2015 4:27:49 πμ)</div></body></html>

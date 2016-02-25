@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>350</x>
+      <y>380</y>
+      <w>260</w>
+      <h>380</h>
+    </coordinates>
+    <panel_attributes>User
+--
+_-id: Integer_
+-userID: Integer
+-username: Username
+-password: Password
+-mail: EmailAddress
+-gender: Gender
+-firstName: String
+-lastName: String
+-birthDate: Date
+-questions: Map&lt;Question,String&gt;
+--
++getUserID(): Integer
++getUsername(): Username
++getPassword(): Password
++setFirstName(firstname: String)
++getFirstName(): String
++setLastName(lastname: String)
++getLastName(): String
++printPosts(): void
++printPosts(user: User): void
++printBuddies(): void
+...
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>700</x>
+      <y>400</y>
+      <w>220</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>Post
+--
+_-id: Integer_
+-postID: Integer
+-text : String
+--
++getPostID(): Integer
++getText(): String
++getUser(): User
++getComments(): List&lt;Comment&gt;
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1000</x>
+      <y>540</y>
+      <w>220</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>Comment
+--
+_-id: Integer_
+-commentID: Integer
+-text : String
+--
++getCommentID(): Integer
++getText(): String
++getComment(): List&lt;Comment&gt;
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>600</x>
+      <y>430</y>
+      <w>120</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..1
+-user</panel_attributes>
+    <additional_attributes>10.0;20.0;100.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>600</x>
+      <y>480</y>
+      <w>120</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..*
+-posts</panel_attributes>
+    <additional_attributes>100.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>910</x>
+      <y>430</y>
+      <w>260</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..*
+-comments</panel_attributes>
+    <additional_attributes>160.0;110.0;160.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>600</x>
+      <y>630</y>
+      <w>420</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..1
+-user</panel_attributes>
+    <additional_attributes>10.0;20.0;400.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>590</x>
+      <y>210</y>
+      <w>300</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+/PostingRules/
+--
+
+--
+hasAccess(user1: User, user2:User) : boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>850</x>
+      <y>0</y>
+      <w>310</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>BuddiesPostingRuleImpl
+--
+
+--
+hasAccess(user1: User, user2:User) : boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>460</x>
+      <y>0</y>
+      <w>310</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>PublicPostingRuleImpl
+--
+
+--
+hasAccess(user1: User, user2:User) : boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>740</x>
+      <y>290</y>
+      <w>60</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..1
+-rule</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>430</x>
+      <y>290</y>
+      <w>140</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..*
+-buddies</panel_attributes>
+    <additional_attributes>100.0;90.0;100.0;20.0;10.0;20.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>330</x>
+      <y>850</y>
+      <w>440</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>BuddyRequest
+--
+_-id: Integer_
+-requestID: Integer
+-/result: boolean
+-answers: Map&lt;Question,String&gt;
+--
++calculate(): void
++answerQuestions(): void
++isResult(): boolean
++getSender(): User
++getReceiver(): User
+-hasAnswered(q: Question, questions: List&lt;Question&gt;): boolean
+-random(i : Integer): Integer
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>390</x>
+      <y>750</y>
+      <w>80</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..1
+-sender</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>510</x>
+      <y>750</y>
+      <w>90</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..1
+-receiver</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>180</y>
+      <w>300</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>Admin
+--
+_-id: Integer_
+-adminID: Integer
+-username: Username
+-password: Password
+--
++getAdminID(): Integer
++getUsername(): Username
++getPassword(): Password
++createQuestion(String,List&lt;String&gt;): Question
++getReports(): List&lt;Report&gt;
++deletePost(r: Report): void
++deleteReport(r: Report): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>40</x>
+      <y>560</y>
+      <w>190</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>Report
+--
+_-id: Integer_
+-reportID: Integer
+-reason: String
+-category: Category
+--
+getReportID(): Integer
+getPost(): Post
+getUser(): User
+toString(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>220</x>
+      <y>580</y>
+      <w>150</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..1
+-user</panel_attributes>
+    <additional_attributes>130.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>110</x>
+      <y>540</y>
+      <w>820</w>
+      <h>620</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..1
+-post</panel_attributes>
+    <additional_attributes>780.0;10.0;780.0;600.0;10.0;600.0;10.0;210.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>110</x>
+      <y>410</y>
+      <w>80</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..*
+-reports</panel_attributes>
+    <additional_attributes>10.0;150.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>580</x>
+      <y>90</y>
+      <w>70</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>50.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>830</x>
+      <y>90</y>
+      <w>60</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;120.0;40.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>930</x>
+      <y>770</y>
+      <w>300</w>
+      <h>250</h>
+    </coordinates>
+    <panel_attributes>Question
+--
+_-id: Integer_
+-questionID: Integer
+-question: String
+-options: List&lt;String&gt;
+--
++addOption(option:String) :void
++removeOption(option:String) :boolean
++getQuestionID(): Integer
++getQuestion(): String
++setQuestion(question: String): void
++getOptions(): List&lt;String&gt;
++setOptions(options: List&lt;String&gt;): void
++toString(): String
++getQuestionsAdmin(): String
+
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>SignUpPresenter.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (3 Ιουν 2015 4:27:49 πμ)</a> &gt; <a href="../../index.html" class="el_group">BuddyChallenge</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">buddychallenge.gui.presenters</a> &gt; <span class="el_source">SignUpPresenter.java</span></div><h1>SignUpPresenter.java</h1><pre class="source lang-java linenums">/*
+ * 
+ */
+package buddychallenge.gui.presenters;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import buddychallenge.dao.QuestionsDAO;
+import buddychallenge.dao.UsersDAO;
+import buddychallenge.exceptions.UserException;
+import buddychallenge.gui.AnswerQuestionnaireJFrame;
+import buddychallenge.gui.views.interfaces.SignUpView;
+import buddychallenge.services.SignUpService;
+import buddychallenge.util.EmailAddress;
+import buddychallenge.util.Gender;
+import buddychallenge.util.Password;
+import buddychallenge.util.Username;
+
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SignUpPresenter.
+ */
+public class SignUpPresenter {
+
+	/** The view. */
+	private SignUpView view;
+
+	/** The signup serv. */
+	private SignUpService service;
+	
+	/** The users. */
+	private UsersDAO users;
+	
+	/** The questions. */
+	private QuestionsDAO questions;
+
+	/**
+	 * Instantiates a new sign up presenter.
+	 *
+	 * @param view the view
+	 * @param users the users
+	 * @param questions the questions
+	 */
+<span class="fc" id="L46">	public SignUpPresenter(SignUpView view, UsersDAO users,</span>
+			QuestionsDAO questions) {
+<span class="fc" id="L48">		this.view = view;</span>
+<span class="fc" id="L49">		this.users = users;</span>
+<span class="fc" id="L50">		this.questions = questions;</span>
+<span class="fc" id="L51">	}</span>
+
+	/**
+	 * Instantiates a new sign up presenter.
+	 *
+	 * @param view the view
+	 */
+	public SignUpPresenter(SignUpView view) {
+<span class="fc" id="L59">		this(view, new UsersDAO(), new QuestionsDAO());</span>
+<span class="fc" id="L60">	}</span>
+
+	/**
+	 * Sets the sign up serv.
+	 *
+	 * @param signupServ the new sign up serv
+	 */
+	public void setService(SignUpService service) {
+<span class="fc" id="L68">		service.setUsers(users);</span>
+<span class="fc" id="L69">		this.service = service;</span>
+<span class="fc" id="L70">	}</span>
+
+	/**
+	 * Start.
+	 */
+	public void start() {
+<span class="fc" id="L76">		view.setSignUpPresenter(this);</span>
+<span class="fc" id="L77">		view.open();</span>
+<span class="fc" id="L78">	}</span>
+
+	/**
+	 * Action.
+	 */
+	public boolean action(){
+
+<span class="fc" id="L85">		Username username = new Username(getUsernameString());</span>
+<span class="fc" id="L86">		Password password = new Password(getPasswordString());</span>
+<span class="fc" id="L87">		EmailAddress email = new EmailAddress(getEmailString());</span>
+<span class="fc" id="L88">		String firstname = new String(getFirstName());</span>
+<span class="fc" id="L89">		String lastname = new String(getLastName());</span>
+<span class="pc bpc" id="L90" title="1 of 2 branches missed.">		Gender gender = getGenderPos() == 0 ? Gender.Gender1</span>
+<span class="nc" id="L91">				: Gender.Gender2;</span>
+<span class="fc" id="L92">		SimpleDateFormat sdf = new SimpleDateFormat(&quot;dd-mm-yy&quot;);</span>
+<span class="fc" id="L93">		Date date = null;</span>
+<span class="fc" id="L94">		boolean error = false;</span>
+		try {
+<span class="fc" id="L96">			date = sdf.parse(getBirthDateString());</span>
+<span class="pc" id="L97">		} catch (ParseException pe) {</span>
+<span class="nc" id="L98">			view.showMessage(pe.getMessage());</span>
+<span class="nc" id="L99">			error = true;</span>
+		}
+		
+<span class="fc" id="L102">		SignUpService service = new SignUpService();</span>
+<span class="pc bpc" id="L103" title="1 of 2 branches missed.">		if (username.isValid())</span>
+<span class="nc" id="L104">			service.setUsername(username);</span>
+		else{
+<span class="fc" id="L106">			view.showMessage(&quot;Invalid Username&quot;);</span>
+<span class="fc" id="L107">			error = true;</span>
+		}
+<span class="pc bpc" id="L109" title="1 of 2 branches missed.">		if (password.isValid()){</span>
+<span class="fc" id="L110">			service.setPassword(password);</span>
+<span class="fc" id="L111">		}</span>
+		else{
+<span class="nc" id="L113">			view.showMessage(&quot;Invalid password&quot;);</span>
+<span class="nc" id="L114">			error = true;</span>
+		}
+		
+<span class="pc bpc" id="L117" title="1 of 2 branches missed.">		if (email.isValid())</span>
+<span class="fc" id="L118">			service.setEmail(email);</span>
+		else{
+<span class="nc" id="L120">			view.showMessage(&quot;Invalid email&quot;);</span>
+<span class="nc" id="L121">			error = true;</span>
+		}
+<span class="fc" id="L123">		service.setFirstname(firstname);</span>
+<span class="fc" id="L124">		service.setLastname(lastname);</span>
+<span class="fc" id="L125">		service.setGender(gender);</span>
+
+<span class="pc bpc" id="L127" title="1 of 2 branches missed.">		if (date != null)</span>
+<span class="fc" id="L128">			service.setBirthdate(date);</span>
+		else{
+<span class="nc" id="L130">			view.showMessage(&quot;Invalid date&quot;);</span>
+<span class="nc" id="L131">			error = true;</span>
+		}		
+<span class="pc bpc" id="L133" title="1 of 2 branches missed.">		if(!error){</span>
+<span class="nc" id="L134">			setService(service);</span>
+			try {
+<span class="nc" id="L136">				this.service.signUpUser();</span>
+<span class="nc" id="L137">				view.showMessage(&quot;User &quot;+ username.getUsername() +&quot; created successfully&quot;);</span>
+<span class="nc" id="L138">				view.close();</span>
+<span class="nc" id="L139">				new AnswerQuestionnairePresenter(new AnswerQuestionnaireJFrame(view.getMainFrame()), questions, </span>
+<span class="nc" id="L140">				users.getUserByUsername(username.toString())).start();</span>
+<span class="nc" id="L141">			} catch (UserException ue) {</span>
+<span class="nc" id="L142">				view.showMessage(ue.getMessage());</span>
+			}
+		}
+		
+<span class="fc" id="L146">		return error;</span>
+	}
+	
+	public String getUsernameString(){
+<span class="fc" id="L150">		return view.getUsernameString();</span>
+	}
+	
+	public String getPasswordString() {
+<span class="fc" id="L154">		return view.getPasswordString();</span>
+	}
+	
+	public String getEmailString() {
+<span class="fc" id="L158">		return view.getEmailString();</span>
+	}
+	
+	public String getFirstName() {
+<span class="fc" id="L162">		return view.getFirstName();</span>
+	}
+	
+	public String getLastName() {
+<span class="fc" id="L166">		return view.getLastName();</span>
+	}
+	
+	public int getGenderPos() {
+<span class="fc" id="L170">		return view.getGenderPos();</span>
+	}
+	
+	public String getBirthDateString() {
+<span class="fc" id="L174">		return view.getBirthDateString();</span>
+	}
+
+	/**
+	 * Cancel.
+	 */
+	public void cancel() {
+<span class="fc" id="L181">		view.close();</span>
+<span class="fc" id="L182">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>test (3 Ιουν 2015 4:27:49 πμ)</div></body></html>

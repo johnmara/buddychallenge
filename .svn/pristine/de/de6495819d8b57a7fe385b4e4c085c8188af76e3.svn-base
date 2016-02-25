@@ -1,0 +1,7 @@
+package buddychallenge.rules;
+
+import buddychallenge.entities.User;
+
+public interface PostingRules {
+	public boolean hasAccess(User creator, User viewer);
+}

@@ -1,0 +1,11 @@
+
+buddychallenge.dao
+buddychallenge.entities
+buddychallenge.exceptions
+buddychallenge.gui
+buddychallenge.gui.presenters
+buddychallenge.gui.stubs
+buddychallenge.gui.views.interfaces
+buddychallenge.rules
+buddychallenge.services
+buddychallenge.util

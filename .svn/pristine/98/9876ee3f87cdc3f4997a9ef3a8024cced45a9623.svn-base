@@ -1,0 +1,58 @@
+package buddychallenge.util;
+
+public class Username {
+	String value;
+
+	public Username(String username) {
+		this.value = username;
+	}
+
+	public String getUsername() {
+		return value;
+	}
+
+	public boolean isValid() {
+		char c = value.charAt(0);
+		if (!(c >= 'A' && c <= 'Z' || c >= 'a' && c <= 'z'))
+			return false;
+		if(value.length() <= 3 || value.length() > 10)
+			return false;
+		if(value.isEmpty())
+			return false;
+		
+		return true;
+	}
+
+	@Override
+	public boolean equals(Object other) {
+		if (other == null) {
+			return false;
+		}
+
+		if (this == other) {
+			return true;
+		}
+
+		if (!(other instanceof EmailAddress)) {
+			return false;
+		}
+
+		Username username = (Username) other;
+		return value == null ? username.getUsername() == null : value
+				.equals(username.getUsername());
+	}
+
+	@Override
+	public int hashCode() {
+		return value == null ? 0 : value.hashCode();
+	}
+
+	@Override
+	public String toString() {
+		return value;
+	}
+	
+	public void setUsername(String username){
+		value = username;
+	}
+}

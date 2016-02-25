@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>BuddyRequestPresenter.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (3 Ιουν 2015 4:27:49 πμ)</a> &gt; <a href="../../index.html" class="el_group">BuddyChallenge</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">buddychallenge.gui.presenters</a> &gt; <span class="el_source">BuddyRequestPresenter.java</span></div><h1>BuddyRequestPresenter.java</h1><pre class="source lang-java linenums">/*
+ * 
+ */
+package buddychallenge.gui.presenters;
+
+import buddychallenge.entities.Question;
+import buddychallenge.entities.User;
+import buddychallenge.gui.views.interfaces.BuddyRequestView;
+import buddychallenge.services.BuddyRequestService;
+
+// TODO: Auto-generated Javadoc
+/**
+ * The Class BuddyRequestPresenter.
+ */
+public class BuddyRequestPresenter {
+	
+	/** The view. */
+	private BuddyRequestView view;
+	
+	/** The service. */
+	private BuddyRequestService service;
+	
+	/** The receiver. */
+	private User sender, receiver;
+	
+	/**
+	 * Instantiates a new buddy request presenter.
+	 *
+	 * @param view the view
+	 * @param sender the sender
+	 * @param receiver the receiver
+	 */
+<span class="nc" id="L33">	public BuddyRequestPresenter(BuddyRequestView view, User sender, User receiver){</span>
+<span class="nc" id="L34">		this.view = view;</span>
+<span class="nc" id="L35">		this.sender = sender;</span>
+<span class="nc" id="L36">		this.receiver = receiver;</span>
+<span class="nc" id="L37">		setService(new BuddyRequestService(this.sender,this.receiver));</span>
+<span class="nc" id="L38">	}</span>
+	
+	/**
+	 * Start.
+	 */
+	public void start(){
+<span class="nc" id="L44">		view.setBuddyRequestPresenter(this);</span>
+<span class="nc" id="L45">		view.open();</span>
+<span class="nc" id="L46">	}</span>
+	
+	/**
+	 * Sets the buddy request service.
+	 *
+	 * @param service the new buddy request service
+	 */
+	public void setService(BuddyRequestService service){
+<span class="nc" id="L54">		this.service = service;</span>
+<span class="nc" id="L55">	}</span>
+
+	/**
+	 * Gets the question.
+	 *
+	 * @return the question
+	 */
+	public Question getQuestion() {
+<span class="nc" id="L63">		return service.getQuestion();</span>
+	}
+
+	/**
+	 * Send questions.
+	 */
+	public void sendQuestions() {
+<span class="nc" id="L70">		boolean error = false;</span>
+		
+<span class="nc bnc" id="L72" title="All 2 branches missed.">		if(view.getAnswer1() == null)</span>
+<span class="nc" id="L73">			error = true;</span>
+		else
+<span class="nc" id="L75">			service.answerQuestion(view.getQuestion1(), view.getAnswer1());</span>
+		
+<span class="nc bnc" id="L77" title="All 2 branches missed.">		if(view.getAnswer2() == null)</span>
+<span class="nc" id="L78">			error = true;</span>
+		else
+<span class="nc" id="L80">			service.answerQuestion(view.getQuestion2(),view.getAnswer2());</span>
+		
+<span class="nc bnc" id="L82" title="All 2 branches missed.">		if(view.getAnswer3() == null)</span>
+<span class="nc" id="L83">			error = true;</span>
+		else
+<span class="nc" id="L85">			service.answerQuestion(view.getQuestion3(),view.getAnswer3());</span>
+		
+<span class="nc bnc" id="L87" title="All 2 branches missed.">		if(view.getAnswer4() == null)</span>
+<span class="nc" id="L88">			error = true;</span>
+		else
+<span class="nc" id="L90">			service.answerQuestion(view.getQuestion4(),view.getAnswer4());</span>
+		
+<span class="nc bnc" id="L92" title="All 2 branches missed.">		if(view.getAnswer5() == null)</span>
+<span class="nc" id="L93">			error = true;</span>
+		else
+<span class="nc" id="L95">			service.answerQuestion(view.getQuestion5(),view.getAnswer5());</span>
+		
+<span class="nc" id="L97">		service.calculate();</span>
+		
+<span class="nc bnc" id="L99" title="All 2 branches missed.">		if(error){</span>
+<span class="nc" id="L100">			view.showMessage(&quot;Not all questions have been answered&quot;);</span>
+<span class="nc" id="L101">		}</span>
+		else{
+<span class="nc bnc" id="L103" title="All 2 branches missed.">			if(service.isResult()){</span>
+<span class="nc" id="L104">				view.showMessage(&quot;You have a new Buddy&quot;);</span>
+<span class="nc" id="L105">				view.close();</span>
+<span class="nc" id="L106">			}</span>
+			else{
+<span class="nc" id="L108">				view.showMessage(&quot;You don't match&quot;);</span>
+<span class="nc" id="L109">				view.close();</span>
+			}
+		}
+		
+<span class="nc" id="L113">	}</span>
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>test (3 Ιουν 2015 4:27:49 πμ)</div></body></html>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>AdminsDAO.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (3 Ιουν 2015 4:27:49 πμ)</a> &gt; <a href="../../index.html" class="el_group">BuddyChallenge</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">buddychallenge.dao</a> &gt; <span class="el_source">AdminsDAO.java</span></div><h1>AdminsDAO.java</h1><pre class="source lang-java linenums">/*
+ * 
+ */
+package buddychallenge.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import buddychallenge.entities.Admin;
+import buddychallenge.util.Password;
+import buddychallenge.util.Username;
+
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AdminsDAO.
+ */
+public class AdminsDAO {
+
+/** The admin list. */
+static List&lt;Admin&gt; adminList;
+	
+	/**
+	 * Instantiates a new admins dao.
+	 */
+<span class="fc" id="L25">	public AdminsDAO(){</span>
+<span class="fc" id="L26">		setAdminList(new ArrayList&lt;Admin&gt;());</span>
+<span class="fc" id="L27">		adminList.add(new Admin(new Username(&quot;zafiris&quot;), new Password(&quot;a199412&quot;)));</span>
+<span class="fc" id="L28">	}</span>
+	
+	/**
+	 * Instantiates a new admins dao.
+	 *
+	 * @param adminList the admin list
+	 */
+<span class="nc" id="L35">	public AdminsDAO(List&lt;Admin&gt; adminList){</span>
+<span class="nc" id="L36">		setAdminList(adminList);</span>
+<span class="nc" id="L37">	}</span>
+	
+
+	/**
+	 * Adds the admin.
+	 *
+	 * @param admin the admin
+	 */
+	public void addAdmin(Admin admin) {
+<span class="fc" id="L46">		adminList.add((Admin)admin);</span>
+<span class="fc" id="L47">	}</span>
+	
+	/**
+	 * Removes the admin.
+	 *
+	 * @param admin the admin
+	 */
+	public void removeAdmin(Admin admin) {
+<span class="nc" id="L55">		adminList.remove((Admin)admin);</span>
+<span class="nc" id="L56">	}</span>
+	
+	/**
+	 * Gets the admin by id.
+	 *
+	 * @param id the id
+	 * @return the admin by id
+	 */
+	public Admin getAdminByID(int id){
+<span class="nc bnc" id="L65" title="All 2 branches missed.">		for (Admin a : adminList){</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">			if (a.getAdminID() == id){</span>
+<span class="nc" id="L67">				return a;</span>
+			}
+		}
+<span class="nc" id="L70">		return null;</span>
+	}
+	
+	/**
+	 * Gets the admin by username.
+	 *
+	 * @param adminname the adminname
+	 * @return the admin by username
+	 */
+	public Admin getAdminByUsername(String adminname){
+<span class="pc bpc" id="L80" title="1 of 2 branches missed.">		for (Admin a : adminList){</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">			if (a.getUsername().getUsername().equals(adminname)){</span>
+<span class="fc" id="L82">				return a;</span>
+			}
+		}
+<span class="nc" id="L85">		return null;</span>
+	}
+	
+	/**
+	 * Sets the admin list.
+	 *
+	 * @param adminList the new admin list
+	 */
+	public void setAdminList(List&lt;Admin&gt; adminList){
+<span class="fc" id="L94">		AdminsDAO.adminList = new ArrayList&lt;Admin&gt;(adminList);</span>
+<span class="fc" id="L95">	}</span>
+	
+	/**
+	 * Gets the admin list.
+	 *
+	 * @return the admin list
+	 */
+	public static List&lt;Admin&gt; getAdminList() {
+<span class="fc" id="L103">		return new ArrayList&lt;Admin&gt;(adminList);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>test (3 Ιουν 2015 4:27:49 πμ)</div></body></html>

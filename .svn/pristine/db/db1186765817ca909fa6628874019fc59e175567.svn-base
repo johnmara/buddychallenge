@@ -1,0 +1,13 @@
+package buddychallenge.exceptions;
+
+public class BuddyException extends Exception {
+
+
+	private static final long serialVersionUID = 1L;
+
+	public BuddyException(String message) {
+        super(message);
+    }
+
+
+}

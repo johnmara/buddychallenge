@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>SearchStub.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (3 Ιουν 2015 4:27:49 πμ)</a> &gt; <a href="../../index.html" class="el_group">BuddyChallenge</a> &gt; <a href="../index.html" class="el_bundle">test</a> &gt; <a href="index.source.html" class="el_package">buddychallenge.gui.stubs</a> &gt; <span class="el_source">SearchStub.java</span></div><h1>SearchStub.java</h1><pre class="source lang-java linenums">package buddychallenge.gui.stubs;
+
+import javax.swing.JFrame;
+
+import buddychallenge.gui.presenters.SearchPresenter;
+import buddychallenge.gui.views.interfaces.SearchView;
+
+<span class="fc" id="L8">public class SearchStub implements SearchView {</span>
+	
+	private int messagesSent;
+<span class="fc" id="L11">	private boolean opened = false;</span>
+	private String profileNameString;
+	
+
+	@Override
+	public void open() {
+<span class="fc" id="L17">		opened = true;</span>
+<span class="fc" id="L18">	}</span>
+
+	public boolean isOpened() {
+<span class="fc" id="L21">		return opened;</span>
+	}
+	
+	@Override
+	public void close() {
+<span class="fc" id="L26">		opened = false;</span>
+<span class="fc" id="L27">	}</span>
+
+	@Override
+	public void setSearchPresenter(SearchPresenter presenter) {
+		
+<span class="fc" id="L32">	}</span>
+
+	public void setProfileNameString(String profileNameString) {
+<span class="fc" id="L35">		this.profileNameString = profileNameString;</span>
+<span class="fc" id="L36">	}</span>
+	
+	public String getProfileNameString() {
+<span class="fc" id="L39">		return this.profileNameString;</span>
+	}
+
+	@Override
+	public JFrame getMainFrame() {
+<span class="nc" id="L44">		return null;</span>
+	}
+	
+	public int getMessagesSent() {
+<span class="fc" id="L48">		return messagesSent;</span>
+	}
+
+	@Override
+	public void showMessage(String message) {
+<span class="fc" id="L53">		messagesSent++;</span>
+<span class="fc" id="L54">	}</span>
+
+	@Override
+	public String getSelectedValue() {
+<span class="nc" id="L58">		return null;</span>
+	}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.2.201409121644</span>test (3 Ιουν 2015 4:27:49 πμ)</div></body></html>
