@@ -1,8 +1,8 @@
 *.class
 
-bin/
+./bin/
 
-miglayout-src.zip
+./miglayout-src.zip
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
