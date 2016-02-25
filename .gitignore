@@ -2,6 +2,7 @@
 
 .bin/
 
+./miglayout15-swing.jar
 ./miglayout-src.zip
 
 # Mobile Tools for Java (J2ME)

@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.2">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>16</x>
+      <y>24</y>
+      <w>272</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+buddychallenge.gui.views.interfaces::SignInView
+--
+
+--
++open():void
++close():void
++setPresenter(presenter:SignInPresenter):void
++showMessage(message:String)
+...
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>512</y>
+      <w>320</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Controller&gt;&gt;
+buddychallenge.services::SignInService
+--
+_-id:int_
+-username:Username
+-password:Password
+-users:UsersDAO
+-admins:AdminsDAO
+--
+-userExists():boolean
+-adminExists():boolean
++getters
++setters
++signInUser()
++getCurrentUser()
++getAdminUser
+...
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>24</y>
+      <w>64</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;50.0;60.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>328</x>
+      <y>16</y>
+      <w>248</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;GUI&gt;&gt;
+buddychallenge.gui::SignInJPanel
+--
+-mainFrame:JFrame
+-previusPanel:JPanel
+...
+--
++open():void
++close():void
++setPresenter(presenter:SignInPresenter):void
++showMessage(message:String)
+...
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>72</x>
+      <y>256</y>
+      <w>296</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Presenter&gt;&gt;
+buddychallenge.gui.presenters::SignInPresenter
+--
+-users:UsersDAO
+-posts:PostsDAO
+-admins:AdminsDAO
+-questions:QuestionsDAO
+-reports:ReportsDAO
+...
+--
++start():void
++cancel():void
++getUsernameString():String
++getPasswordString():String
+...
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>776</x>
+      <y>136</y>
+      <w>48</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..1
+view</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>240</x>
+      <y>112</y>
+      <w>112</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..1
+presenter</panel_attributes>
+    <additional_attributes>10.0;180.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>240</x>
+      <y>440</y>
+      <w>80</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..1
+service</panel_attributes>
+    <additional_attributes>10.0;90.0;70.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>656</x>
+      <y>16</y>
+      <w>272</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+buddychallenge.gui.views.interfaces::SignUpView
+--
+
+--
++open():void
++close():void
++setPresenter(presenter:SignUpPresenter):void
++showMessage(message:String)
+...
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>984</x>
+      <y>16</y>
+      <w>248</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;GUI&gt;&gt;
+buddychallenge.gui::SignUpJPanel
+--
+-mainFrame:JFrame
+-previusPanel:JPanel
+...
+--
++open():void
++close():void
++setPresenter(presenter:SignUpPresenter):void
++showMessage(message:String)
+...
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>664</x>
+      <y>232</y>
+      <w>280</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Presenter&gt;&gt;
+buddychallenge.gui.presenters::SignUpPresenter
+--
+-users:UsersDAO
+-questions:QuestionsDAO
+...
+--
++start():void
++cancel():void
++getUsernameString():String
++getPasswordString():String
+...
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>888</x>
+      <y>144</y>
+      <w>120</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..1
+presenter</panel_attributes>
+    <additional_attributes>10.0;110.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>920</x>
+      <y>32</y>
+      <w>80</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;30.0;80.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>600</x>
+      <y>456</y>
+      <w>384</w>
+      <h>216</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Controller&gt;&gt;
+buddychallenge.services::SignUpService
+--
+_-id:int_
+-username:Username
+-password:Password
+-email:EmailAddress
+-gender:Gender
+...
+-users:UsersDAO
+--
+-userExists():boolean
++setters
++getters
++signUpUser():void
+...
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>824</x>
+      <y>384</y>
+      <w>88</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..1
+service</panel_attributes>
+    <additional_attributes>10.0;90.0;80.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>120</x>
+      <y>144</y>
+      <w>88</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..1
+view</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1280</x>
+      <y>24</y>
+      <w>272</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+buddychallenge.gui.views.interfaces::AddPostView
+--
+
+--
++open():void
++close():void
++setPresenter(presenter:AddPostPresenter):void
++showMessage(message:String)
+...
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1608</x>
+      <y>8</y>
+      <w>248</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;GUI&gt;&gt;
+buddychallenge.gui::AddPostJFrame
+--
+-mainFrame:JFrame
+-previusPanel:JPanel
+...
+--
++open():void
++close():void
++setPresenter(presenter:SignUpPresenter):void
++showMessage(message:String)
+...
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1368</x>
+      <y>232</y>
+      <w>280</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Presenter&gt;&gt;
+buddychallenge.gui.presenters::AddPostPresenter
+--
+-users:UsersDAO
+-questions:QuestionsDAO
+...
+--
++start():void
++cancel():void
++getRule():PostingRules
++getCreator():User
+...
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1544</x>
+      <y>24</y>
+      <w>80</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;40.0;80.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1536</x>
+      <y>144</y>
+      <w>120</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..1
+presenter</panel_attributes>
+    <additional_attributes>10.0;110.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1216</x>
+      <y>456</y>
+      <w>384</w>
+      <h>176</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Controller&gt;&gt;
+buddychallenge.services::AddPostService
+--
+_-id:int_
+-text:String
+-creator:User
+-rule:PostingRules
+-posts:PostsDAO
+--
++setters
++getters
++addPost():void
+...
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1488</x>
+      <y>376</y>
+      <w>128</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..1
+service</panel_attributes>
+    <additional_attributes>10.0;100.0;140.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1400</x>
+      <y>144</y>
+      <w>56</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..1
+view</panel_attributes>
+    <additional_attributes>10.0;10.0;40.0;110.0</additional_attributes>
+  </element>
+</diagram>
