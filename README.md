@@ -4,7 +4,7 @@ Buddy Challenge
 
 
 A Social Network that you connect with another people around the world. To add a buddy you have to complete a questionnaire and if you 
-have commons with the another user you became buddies automatically.
+have commons with the another user you become buddies automatically.
 
 Techonologies that used are:
 
